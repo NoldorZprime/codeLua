@@ -1,28 +1,40 @@
-// @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
+import { defineConfig } from "astro/config";
+import starlight from "@astrojs/starlight";
+import { sidebar } from "./src/config/sidebar";
+import { sidebarEn } from "./src/config/sidebarEn";
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'My Docs',
-			social: {
-				github: 'https://github.com/withastro/starlight',
+			title: "CodeLua",
+			title: {
+				es: "CodeLua",
+				en: "CodeLua",
 			},
-			sidebar: [
-				{
-					label: 'Guides',
-					items: [
-						// Each item here is one entry in the navigation menu.
-						{ label: 'Example Guide', slug: 'guides/example' },
-					],
+			defaultLocale: "root", // opcional
+			locales: {
+				root: {
+					label: "Español",
+					lang: "es", // lang es obligatorio para los locales raíz
 				},
-				{
-					label: 'Reference',
-					autogenerate: { directory: 'reference' },
+				en: {
+					label: "English",
+					lang: "en",
 				},
+			},
+			logo: {
+				src: "./src/assets/logo-lua.svg",
+				alt: "Logo de Lua",
+				// replacesTitle: true,
+			},
+			customCss: [
+				"./src/styles/custom.css",
 			],
+			social: {
+				github: "https://github.com/NoldorZprime/codeLua",
+			},
+			sidebar: sidebar,
 		}),
 	],
 });
