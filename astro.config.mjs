@@ -7,10 +7,10 @@ import { sidebarEn } from "./src/config/sidebarEn";
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: "CodeLua",
+			title: "CodeLenguajeC",
 			title: {
-				es: "CodeLua",
-				en: "CodeLua",
+				es: "CodeLenguajeC",
+				en: "CodeLenguajeC",
 			},
 			defaultLocale: "root", // opcional
 			locales: {
@@ -24,15 +24,15 @@ export default defineConfig({
 				},
 			},
 			logo: {
-				src: "./src/assets/logo-lua.svg",
-				alt: "Logo de Lua",
+				src: "./src/assets/logo-c.svg",
+				alt: "Logo de c",
 				// replacesTitle: true,
 			},
 			customCss: [
 				"./src/styles/custom.css",
 			],
 			social: {
-				github: "https://github.com/NoldorZprime/codeLua",
+				github: "https://github.com/NoldorZprime/codeLenguajeC",
 			},
 			sidebar: sidebar,
 		}),

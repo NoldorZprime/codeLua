@@ -1,7 +1,7 @@
 export const sidebar = [
     {
-        label: "Getting started with Lua",
-        autogenerate: { directory: "01-get-started-with-lua" },
+        label: "Getting started with C",
+        autogenerate: { directory: "01-get-started-with-c" },
     },
     {
         label: "Variables and data",
