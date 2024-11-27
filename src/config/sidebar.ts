@@ -1,7 +1,7 @@
 export const sidebar = [
     {
-        label: "Primeros pasos con C",
-        autogenerate: { directory: "01-get-started-with-c" },
+        label: "Primeros pasos con Lua",
+        autogenerate: { directory: "01-get-started-with-lua" },
     },
     {
         label: "Usu de variables y datos",
