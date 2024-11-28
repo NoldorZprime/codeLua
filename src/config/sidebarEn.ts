@@ -4,7 +4,7 @@ export const sidebar = [
         autogenerate: { directory: "01-get-started-with-lua" },
     },
     {
-        label: "Variables and data",
-        autogenerate: { directory: "02-variables-data" },
+        label: "Fundamentals of the Language",
+        autogenerate: { directory: "02-Fundamentals-of-the-Language" },
     },
 ];
