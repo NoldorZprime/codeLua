@@ -1,0 +1,204 @@
+---
+title: Mostrar datos
+description: A reference page in my new Starlight docs site.
+---
+
+En programación, es común que los datos se representen como texto, pero a veces es necesario manipular o mostrar caracteres especiales. Estos caracteres pueden incluir saltos de línea, tabulaciones, comillas, entre otros. En Lua, los caracteres especiales son representados mediante secuencias de escape, que permiten incluir estos caracteres dentro de las cadenas de texto.
+
+Este artículo cubrirá cómo mostrar y trabajar con caracteres especiales en Lua, qué son las secuencias de escape, cómo usarlas correctamente y algunas recomendaciones para su manejo adecuado.
+
+---
+
+### 1. **¿Qué Son los Caracteres Especiales?**
+
+Los caracteres especiales son símbolos o secuencias de caracteres que tienen un significado especial en el contexto de programación. En Lua, como en otros lenguajes de programación, los caracteres especiales suelen ser representados mediante **secuelas de escape** dentro de cadenas de texto. Esto permite que caracteres que de otro modo tendrían un significado especial o no serían visibles (como el salto de línea) sean representados como parte del texto.
+
+#### Ejemplos Comunes de Caracteres Especiales:
+
+- **`"\n"`**: Salto de línea
+- **`"\t"`**: Tabulación
+- **`"\r"`**: Retorno de carro
+- **`"\\"`**: Barra invertida (backslash)
+- **`"\""`**: Comillas dobles
+- **`"'"`**: Comillas simples
+
+Estos caracteres se utilizan en diferentes contextos para controlar el formato o para representar caracteres que no se pueden escribir directamente.
+
+---
+
+### 2. **Secuencias de Escape en Lua**
+
+En Lua, las secuencias de escape se utilizan dentro de las cadenas de texto para representar caracteres especiales. Para hacer uso de ellas, simplemente debes escribir la secuencia de escape dentro de una cadena, precedida por una barra invertida (`\`).
+
+#### 2.1. **Salto de Línea (`\n`)**
+
+El salto de línea es una de las secuencias de escape más utilizadas. Se usa para mover el cursor a una nueva línea.
+
+#### Ejemplo:
+
+```lua
+print("Primera línea\nSegunda línea")
+```
+
+**Salida**:
+
+```
+Primera línea
+Segunda línea
+```
+
+En este caso, **`\n`** provoca que el texto "Segunda línea" se imprima en una nueva línea.
+
+---
+
+#### 2.2. **Tabulación (`\t`)**
+
+La tabulación se utiliza para agregar un espacio de tabulación en el texto, lo que facilita la alineación.
+
+#### Ejemplo:
+
+```lua
+print("Nombre\tEdad")
+print("Juan\t25")
+print("Ana\t30")
+```
+
+**Salida**:
+
+```
+Nombre  Edad
+Juan    25
+Ana     30
+```
+
+**`\t`** coloca un espacio de tabulación entre las palabras, ayudando a organizar la información de forma más legible.
+
+---
+
+#### 2.3. **Retorno de Carro (`\r`)**
+
+El retorno de carro mueve el cursor al principio de la línea actual, sin avanzar a una nueva línea. A menudo se utiliza para sobrescribir una línea.
+
+#### Ejemplo:
+
+```lua
+print("Hola Mundo\rAdiós Mundo")
+```
+
+**Salida**:
+
+```
+Adiós Mundo
+```
+
+En este caso, **`\r`** mueve el cursor al principio de la línea y sobrescribe "Hola Mundo" con "Adiós Mundo".
+
+---
+
+#### 2.4. **Barra Invertida (`\\`)**
+
+La barra invertida (`\`) se utiliza como un carácter de escape para permitir que se escriban caracteres que de otro modo serían tratados como secuencias de escape. Para mostrar una barra invertida en una cadena, se debe escribir **`\\`**.
+
+#### Ejemplo:
+
+```lua
+print("Este es un carácter de barra invertida: \\")
+```
+
+**Salida**:
+
+```
+Este es un carácter de barra invertida: \
+```
+
+---
+
+#### 2.5. **Comillas Dobles y Simples (`\"` y `\'`)**
+
+En Lua, las comillas dobles y simples son utilizados para definir cadenas de texto. Si necesitas incluir una comilla dentro de una cadena, puedes utilizar las secuencias de escape **`\"`** o **`\'`**.
+
+#### Ejemplo:
+
+```lua
+print("El \"mensaje\" es importante")
+print('El \'mensaje\' es importante')
+```
+
+**Salida**:
+
+```
+El "mensaje" es importante
+El 'mensaje' es importante
+```
+
+---
+
+### 3. **Uso de Caracteres Especiales en Cadenas Multilínea**
+
+En Lua, las cadenas de texto se pueden definir de dos formas: usando comillas dobles (`"`) o comillas simples (`'`). Sin embargo, para cadenas de múltiples líneas, puedes usar **`[[]]`** (cadenas literales), lo que permite incluir saltos de línea y otros caracteres especiales sin necesidad de secuencias de escape.
+
+#### Ejemplo de Cadenas Literales:
+
+```lua
+mensaje = [[
+Este es un mensaje
+con varias líneas
+y caracteres especiales como \n, \t, etc.
+]]
+print(mensaje)
+```
+
+**Salida**:
+
+```
+Este es un mensaje
+con varias líneas
+y caracteres especiales como \n, \t, etc.
+```
+
+Las cadenas literales en Lua permiten incluir saltos de línea directamente, lo que resulta útil cuando necesitas trabajar con texto que incluye saltos de línea, sin necesidad de escribir **`\n`** explícitamente.
+
+---
+
+### 4. **Otros Caracteres Especiales**
+
+Lua también soporta otros caracteres especiales, que aunque menos comunes, pueden ser útiles en ciertos contextos:
+
+- **`\a`**: Alerta (hace sonar el timbre del sistema)
+- **`\b`**: Retroceso (backspace)
+- **`\f`**: Avance de formulario
+- **`\v`**: Tabulación vertical
+
+Estos caracteres son menos frecuentes, pero pueden ser utilizados si es necesario.
+
+---
+
+### 5. **Concatenación y Caracteres Especiales**
+
+Los caracteres especiales también pueden ser utilizados en conjunto con la concatenación de cadenas para formar textos complejos.
+
+#### Ejemplo:
+
+```lua
+nombre = "Juan"
+edad = 30
+mensaje = "Nombre: " .. nombre .. "\nEdad: " .. edad .. "\n"
+print(mensaje)
+```
+
+**Salida**:
+
+```
+Nombre: Juan
+Edad: 30
+```
+
+La concatenación con **`..`** permite combinar texto con valores de variables, y las secuencias de escape (como **`\n`**) permiten dar formato al texto.
+
+---
+
+### 6. **Conclusión**
+
+En Lua, los caracteres especiales son representados mediante secuencias de escape, las cuales permiten incluir caracteres que tienen un significado especial o no son visibles, como saltos de línea, tabulaciones y comillas. Saber cómo utilizar estas secuencias de escape correctamente puede mejorar la legibilidad y funcionalidad de los programas, sobre todo cuando se trabaja con cadenas de texto que requieren un formato específico.
+
+Recuerda siempre que la correcta utilización de caracteres especiales y la gestión adecuada de cadenas multilínea es fundamental para crear programas más robustos y legibles en Lua.

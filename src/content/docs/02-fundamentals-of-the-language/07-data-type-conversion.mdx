@@ -1,0 +1,173 @@
+---
+title: Conversión de tipos de datos
+description: A reference page in my new Starlight docs site.
+---
+
+La **conversión de tipos de datos** (o **casting**) es el proceso mediante el cual se transforma un valor de un tipo de dato a otro. En Lua, el lenguaje es de tipo dinámico, lo que significa que no es necesario declarar el tipo de las variables de forma explícita. Sin embargo, es importante entender cómo convertir entre diferentes tipos de datos cuando sea necesario para manipular datos correctamente.
+
+En este artículo, exploraremos las formas de convertir entre los tipos de datos más comunes en Lua y cómo el lenguaje maneja la conversión de manera automática o mediante funciones específicas.
+
+---
+
+### Tipos de Datos Comunes en Lua
+
+Antes de adentrarnos en la conversión de tipos, repasemos brevemente los tipos de datos básicos que existen en Lua:
+
+- **nil**: Representa la ausencia de valor.
+- **booleano**: `true` o `false`.
+- **número**: Representa tanto enteros como números flotantes (decimales).
+- **cadena de texto (string)**: Una secuencia de caracteres.
+- **tabla (table)**: Una estructura de datos compleja, similar a un array o un diccionario.
+- **función (function)**: Funciones definidas por el usuario o por el sistema.
+
+---
+
+### 1. **Conversión Implícita de Tipos**
+
+Lua es un lenguaje con **tipos dinámicos**, lo que significa que generalmente convierte los tipos de datos de manera implícita según sea necesario. Por ejemplo, si se suman números con cadenas, Lua intentará hacer la conversión automáticamente.
+
+#### Ejemplo:
+
+```lua
+numero = 10
+texto = " es un número"
+resultado = numero .. texto  -- Lua convierte automáticamente el número 10 a una cadena.
+print(resultado)  -- Resultado: "10 es un número"
+```
+
+En este caso, la variable `numero` es un número entero y la variable `texto` es una cadena. Al usar el operador `..` para concatenar, Lua convierte el número a una cadena antes de la concatenación.
+
+---
+
+### 2. **Conversión Explícita de Tipos**
+
+En ciertos casos, es necesario convertir explícitamente entre tipos. Lua proporciona varias funciones para hacer esta conversión de manera controlada. Estas son algunas de las funciones más útiles para convertir entre tipos:
+
+---
+
+#### **2.1. Conversión de Número a Cadena**
+
+Para convertir un número a una cadena en Lua, se utiliza la función **`tostring()`**. Esto es útil cuando necesitas manipular o imprimir un número como texto.
+
+#### Ejemplo:
+
+```lua
+numero = 123
+cadena = tostring(numero)  -- Convierte el número 123 a la cadena "123"
+print(cadena)  -- Resultado: "123"
+```
+
+---
+
+#### **2.2. Conversión de Cadena a Número**
+
+Para convertir una cadena que representa un número en un valor numérico, se usa la función **`tonumber()`**. Esta función intenta convertir la cadena a un número (entero o flotante). Si la conversión falla, devolverá **`nil`**.
+
+#### Ejemplo:
+
+```lua
+texto = "456"
+numero = tonumber(texto)  -- Convierte la cadena "456" al número 456
+print(numero)  -- Resultado: 456
+```
+
+Si la cadena no es un número válido, el resultado será **`nil`**:
+
+```lua
+texto_invalido = "abc"
+numero_invalido = tonumber(texto_invalido)  -- No se puede convertir, devuelve nil
+print(numero_invalido)  -- Resultado: nil
+```
+
+---
+
+#### **2.3. Conversión a Booleano**
+
+En Lua, cualquier valor distinto de **`nil`** y **`false`** se considera **`true`** cuando se convierte a un valor booleano. Para hacer esta conversión explícita, se puede utilizar **`toboolean()`**, aunque en Lua no existe una función dedicada específica para convertir a booleano de forma explícita. En cambio, solo hay que hacer una comparación para convertir valores a booleanos.
+
+#### Ejemplo:
+
+```lua
+numero = 5
+booleano = numero ~= 0  -- El valor 5 se convierte a true, ya que es distinto de 0
+print(booleano)  -- Resultado: true
+```
+
+---
+
+#### **2.4. Conversión a Nil**
+
+Aunque no es tan común, a veces puede ser útil convertir explícitamente un valor a **`nil`**. Esto se puede hacer simplemente asignando el valor **`nil`** a una variable.
+
+#### Ejemplo:
+
+```lua
+variable = 10
+variable = nil  -- La variable ahora es nil
+print(variable)  -- Resultado: nil
+```
+
+---
+
+### 3. **Consideraciones de Conversión Automática**
+
+A lo largo de tu programación en Lua, notarás que el lenguaje maneja muchas conversiones de forma automática:
+
+- **Concatenación de números con cadenas**: Lua convierte automáticamente números a cadenas cuando se usan en una operación de concatenación con el operador `..`.
+- **Valores booleanos**: Lua convierte cualquier valor diferente de **`false`** y **`nil`** en **`true`** en una comparación booleana.
+
+#### Ejemplo:
+
+```lua
+numero = 10
+booleano = (numero and true)  -- Lua convierte el número 10 a true en una expresión booleana.
+print(booleano)  -- Resultado: true
+```
+
+---
+
+### 4. **Conversión entre Tablas**
+
+En Lua, las **tablas** son un tipo de dato fundamental que se puede usar para representar arrays, diccionarios y estructuras más complejas. No hay una función directa para convertir una tabla a otro tipo de datos, ya que las tablas son estructuras complejas. Sin embargo, es posible realizar conversiones entre tablas y otros tipos, por ejemplo, usando iteraciones.
+
+---
+
+### 5. **Errores Comunes en la Conversión de Tipos**
+
+Al trabajar con conversiones de tipos, hay varios errores comunes que los programadores deben evitar:
+
+1. **Conversión inválida de cadenas a números**: Intentar convertir una cadena que no representa un número válido a un número, devolverá **`nil`**.
+   
+   ```lua
+   texto = "abc"
+   numero = tonumber(texto)
+   if numero == nil then
+       print("Conversión fallida")
+   end
+   ```
+
+2. **Concatenación de valores no cadenas sin conversión explícita**: Si se intenta concatenar un tipo que no es una cadena con otro tipo de dato sin usar `tostring()`, puede ocurrir un error.
+
+   ```lua
+   numero = 10
+   cadena = "El número es: " .. numero  -- No generará error, ya que Lua convierte automáticamente el número a cadena.
+   ```
+
+3. **Uso inapropiado de valores booleanos**: Recordar que **`false`** y **`nil`** son los únicos valores que Lua considera falsos, todos los demás son verdaderos.
+
+---
+
+### Resumen
+
+| Tipo de Conversión | Función         | Descripción                                |
+|--------------------|-----------------|--------------------------------------------|
+| Número a Cadena    | `tostring()`    | Convierte un número a su representación en cadena. |
+| Cadena a Número    | `tonumber()`    | Convierte una cadena en un número (si es posible). |
+| Cualquier tipo a Booleano | Comparación lógica (`~=`, `==`, etc.) | Convierte un valor a booleano (`false` o `true`). |
+| Cualquier tipo a Nil | Asignación directa `nil` | Convierte un valor a **nil**, lo que indica la ausencia de valor. |
+
+---
+
+### Conclusión
+
+En Lua, la conversión de tipos de datos es una tarea importante para manipular valores correctamente y evitar errores. Aunque Lua realiza muchas conversiones de manera implícita, también es esencial entender cómo convertir explícitamente entre diferentes tipos de datos utilizando funciones como `tostring()` y `tonumber()`. Además, comprender cómo Lua maneja los valores booleanos, cadenas y tablas es clave para escribir código eficiente y libre de errores.

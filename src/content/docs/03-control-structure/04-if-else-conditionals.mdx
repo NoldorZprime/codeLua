@@ -1,0 +1,183 @@
+---
+title: Condicionales if-else
+description: A reference page in my new Starlight docs site.
+---
+
+### La estructura de control `if else` en Lua
+
+En programación, las estructuras de control son fundamentales para dirigir el flujo de ejecución del programa según determinadas condiciones. En Lua, la estructura de control **`if-else`** es una de las más utilizadas para tomar decisiones. Permite ejecutar diferentes bloques de código según si una condición es **verdadera** o **falsa**.
+
+En este artículo, explicaremos cómo funciona la estructura **`if-else`** en Lua, cómo se utiliza de manera básica y avanzada, y algunos ejemplos prácticos para ilustrar su uso.
+
+---
+
+### 1. **¿Qué es una Estructura `if-else`?**
+
+La estructura **`if-else`** es un mecanismo de decisión que evalúa una condición booleana. Si la condición es verdadera, se ejecuta un bloque de código, de lo contrario, se ejecuta otro bloque alternativo (en caso de que exista).
+
+La sintaxis básica de un **`if-else`** en Lua es la siguiente:
+
+```lua
+if condición then
+    -- Código si la condición es verdadera
+else
+    -- Código si la condición es falsa
+end
+```
+
+- **`if`**: Introduce la condición que se va a evaluar.
+- **`then`**: Indica el inicio del bloque de código que se ejecutará si la condición es verdadera.
+- **`else`**: Define el bloque de código que se ejecutará si la condición es falsa.
+- **`end`**: Finaliza la estructura **`if-else`**.
+
+---
+
+### 2. **Sintaxis Básica de `if-else`**
+
+A continuación, presentamos un ejemplo básico de una estructura **`if-else`** que evalúa si un número es mayor o menor que 10.
+
+#### Ejemplo:
+
+```lua
+numero = 8
+
+if numero > 10 then
+    print("El número es mayor que 10")
+else
+    print("El número es menor o igual a 10")
+end
+```
+
+En este caso:
+- Si la variable **`numero`** es mayor que 10, se imprimirá **"El número es mayor que 10"**.
+- Si no lo es (es menor o igual a 10), se imprimirá **"El número es menor o igual a 10"**.
+
+---
+
+### 3. **Uso de `elseif` para Múltiples Condiciones**
+
+En Lua, es posible usar **`elseif`** para evaluar múltiples condiciones de manera secuencial. Esto permite que el programa tome decisiones más complejas con varias posibles salidas.
+
+#### Ejemplo:
+
+```lua
+numero = 15
+
+if numero > 20 then
+    print("El número es mayor que 20")
+elseif numero > 10 then
+    print("El número es mayor que 10 pero menor o igual a 20")
+else
+    print("El número es menor o igual a 10")
+end
+```
+
+En este ejemplo, se evalúan tres posibles condiciones:
+1. Si el número es mayor que 20.
+2. Si el número es mayor que 10 pero menor o igual a 20.
+3. Si ninguna de las anteriores condiciones es verdadera (es decir, el número es menor o igual a 10).
+
+El **`elseif`** permite encadenar varias condiciones sin necesidad de múltiples bloques **`if`** y **`else`**.
+
+---
+
+### 4. **Evaluación de Condiciones**
+
+Las condiciones que se utilizan dentro de un **`if-else`** pueden ser expresiones booleanas, comparaciones o cualquier expresión que se pueda evaluar como **verdadera** o **falsa**. En Lua, cualquier valor diferente de **`nil`** y **`false`** se considera **verdadero**.
+
+#### Ejemplo:
+
+```lua
+valor = 0  -- En Lua, 0 es considerado "truthy", no falso
+
+if valor then
+    print("El valor es verdadero")
+else
+    print("El valor es falso")
+end
+```
+
+Aunque el valor es **`0`**, se considera **verdadero** porque en Lua, **cualquier valor diferente de `false` y `nil`** se considera verdadero.
+
+---
+
+### 5. **Condiciones Compuestas con Operadores Lógicos**
+
+Se pueden combinar varias condiciones usando los operadores lógicos **`and`**, **`or`** y **`not`** para crear decisiones más complejas dentro de la estructura **`if-else`**.
+
+#### Ejemplo:
+
+```lua
+edad = 25
+tiene_permiso = true
+
+if edad >= 18 and tiene_permiso then
+    print("Puede ingresar al evento")
+else
+    print("No puede ingresar al evento")
+end
+```
+
+En este caso, la condición usa el operador **`and`** para verificar dos condiciones: si la **edad** es mayor o igual a 18 y si la persona tiene **permiso**. Si ambas son **verdaderas**, el mensaje será "Puede ingresar al evento". Si alguna de las condiciones es falsa, el mensaje será "No puede ingresar al evento".
+
+---
+
+### 6. **Condiciones con `not`**
+
+El operador **`not`** invierte una condición booleana. Es útil cuando quieres tomar una acción si una condición no se cumple.
+
+#### Ejemplo:
+
+```lua
+usuario_autenticado = false
+
+if not usuario_autenticado then
+    print("Por favor, inicie sesión")
+else
+    print("Bienvenido, usuario")
+end
+```
+
+En este ejemplo, si la variable **`usuario_autenticado`** es **`false`**, el operador **`not`** la convierte en **`true`**, lo que hace que se ejecute el bloque del **`if`**. De lo contrario, se ejecuta el bloque **`else`**.
+
+---
+
+### 7. **`if-else` en Funciones**
+
+Las estructuras **`if-else`** también pueden ser útiles dentro de funciones. Permiten definir el comportamiento de una función según las condiciones de entrada.
+
+#### Ejemplo:
+
+```lua
+function calcular_descuento(precio)
+    if precio > 100 then
+        return precio * 0.9  -- Aplica un descuento del 10%
+    else
+        return precio  -- No aplica descuento
+    end
+end
+
+precio_final = calcular_descuento(120)
+print(precio_final)  -- Imprime 108.0
+```
+
+En este caso, la función **`calcular_descuento`** aplica un descuento solo si el precio es mayor que 100. De lo contrario, no aplica descuento.
+
+---
+
+### 8. **Resumen de la Estructura `if-else`**
+
+| Estructura | Descripción                                                      | Ejemplo                                    |
+|------------|------------------------------------------------------------------|--------------------------------------------|
+| `if`       | Comienza la evaluación de una condición                          | `if x > 10 then`                          |
+| `elseif`   | Agrega condiciones adicionales a la evaluación (opcional)        | `elseif x > 5 then`                       |
+| `else`     | Bloque de código a ejecutar si todas las condiciones anteriores son falsas | `else`                                    |
+| `end`      | Finaliza la estructura `if-else`                                  | `end`                                      |
+
+---
+
+### 9. **Conclusión**
+
+La estructura **`if-else`** es una herramienta básica pero poderosa en Lua para tomar decisiones dentro de un programa. Te permite ejecutar diferentes bloques de código dependiendo de las condiciones que se cumplan. Al combinar **`if`**, **`elseif`**, y **`else`**, puedes construir programas más complejos y flexibles que reaccionen a diferentes situaciones en tiempo de ejecución.
+
+Usar correctamente las estructuras condicionales es esencial para desarrollar programas que puedan adaptarse a diversos escenarios y entradas del usuario.

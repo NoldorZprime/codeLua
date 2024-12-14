@@ -7,4 +7,8 @@ export const sidebar = [
         label: "Fundamentos del lenguaje",
         autogenerate: { directory: "02-fundamentals-of-the-language" },
     },
+    {
+        label: "Estructuras de control",
+        autogenerate: { directory: "03-control-structure" },
+    },
 ];

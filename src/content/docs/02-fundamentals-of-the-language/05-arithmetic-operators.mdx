@@ -1,0 +1,181 @@
+---
+title: Operadores Aritméticos
+description: A reference page in my new Starlight docs site.
+---
+
+### Operadores Aritméticos en Lua
+
+Los **operadores aritméticos** son fundamentales en cualquier lenguaje de programación, y Lua no es la excepción. Estos operadores permiten realizar operaciones matemáticas sobre valores numéricos. A continuación, exploraremos los operadores aritméticos disponibles en Lua, cómo se utilizan y ejemplos de su aplicación.
+
+---
+
+### 1. **Suma (`+`)**
+
+El operador de suma se utiliza para sumar dos números. En Lua, este operador puede ser utilizado con números enteros, decimales (flotantes) y, en ciertos casos, también con cadenas de texto (concatenación).
+
+#### Ejemplo:
+
+```lua
+a = 5
+b = 3
+resultado = a + b  -- Resultado: 8
+```
+
+Además, si utilizamos el operador `+` con cadenas de texto, se realiza una **concatenación**:
+
+```lua
+cadena1 = "Hola, "
+cadena2 = "Mundo!"
+resultado = cadena1 + cadena2  -- Esto generará un error, ya que el operador + no puede concatenar cadenas. Debemos usar `..`
+```
+
+**Corregido**:
+
+```lua
+resultado = cadena1 .. cadena2  -- Resultado: "Hola, Mundo!"
+```
+
+---
+
+### 2. **Resta (`-`)**
+
+El operador de resta se utiliza para restar dos números. Este operador es bastante simple y se aplica igual que en la mayoría de los lenguajes de programación.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 4
+resultado = a - b  -- Resultado: 6
+```
+
+---
+
+### 3. **Multiplicación (`*`)**
+
+El operador de multiplicación se utiliza para multiplicar dos números.
+
+#### Ejemplo:
+
+```lua
+a = 6
+b = 7
+resultado = a * b  -- Resultado: 42
+```
+
+---
+
+### 4. **División (`/`)**
+
+El operador de división realiza la división entre dos números. En Lua, siempre devuelve un **número de punto flotante** (incluso si el resultado es un número entero exacto).
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 2
+resultado = a / b  -- Resultado: 5.0
+```
+
+### División con residuos (`//`)
+
+Para obtener el **cociente entero** de una división, Lua ofrece el operador `//`, que realiza una división entera, eliminando cualquier parte decimal.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 3
+resultado = a // b  -- Resultado: 3 (cociente entero)
+```
+
+### Operador módulo (`%`)
+
+El operador módulo calcula el **residuo** de una división, es decir, la parte que sobra después de dividir los dos números.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 3
+resultado = a % b  -- Resultado: 1 (residuo de la división 10/3)
+```
+
+---
+
+### 5. **Exponenciación (`^`)**
+
+El operador de exponenciación en Lua se utiliza para elevar un número a la potencia de otro. Este operador permite calcular potencias de manera sencilla.
+
+#### Ejemplo:
+
+```lua
+a = 2
+b = 3
+resultado = a ^ b  -- Resultado: 8 (2 elevado a la potencia de 3)
+```
+
+---
+
+### 6. **Operadores combinados**
+
+Lua también permite **operadores combinados** que combinan una operación aritmética con una asignación. Estos operadores son una forma abreviada de escribir una operación con el valor actual de una variable. Los operadores combinados más comunes son:
+
+- **Suma combinada (`+=`)**: Suma el valor de la derecha al valor de la izquierda y asigna el resultado a la variable de la izquierda.
+- **Resta combinada (`-=`)**: Resta el valor de la derecha al valor de la izquierda y asigna el resultado a la variable de la izquierda.
+- **Multiplicación combinada (`*=`)**: Multiplica el valor de la derecha por el valor de la izquierda y asigna el resultado a la variable de la izquierda.
+- **División combinada (`/=`)**: Divide el valor de la izquierda entre el valor de la derecha y asigna el resultado a la variable de la izquierda.
+- **Exponenciación combinada (`^=`)**: Eleva el valor de la izquierda a la potencia del valor de la derecha y asigna el resultado a la variable de la izquierda.
+
+#### Ejemplo:
+
+```lua
+a = 5
+a += 3  -- Resultado: a = 8
+a -= 2  -- Resultado: a = 6
+a *= 4  -- Resultado: a = 24
+a /= 2  -- Resultado: a = 12
+a ^= 2  -- Resultado: a = 144
+```
+
+---
+
+### 7. **Precauciones con la división por cero**
+
+Es importante tener en cuenta que si se realiza una **división por cero** en Lua, el lenguaje no lanza un error, sino que devuelve el valor **`inf`** (infinito) o **`-inf`** (infinito negativo), dependiendo de la operación.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 0
+resultado = a / b  -- Resultado: inf
+```
+
+También, si intentas calcular el módulo de cero, Lua retornará **`NaN`** (Not a Number).
+
+#### Ejemplo:
+
+```lua
+resultado = a % 0  -- Resultado: NaN
+```
+
+---
+
+### Resumen de Operadores Aritméticos
+
+| Operador | Descripción                   | Ejemplo             |
+|----------|-------------------------------|---------------------|
+| `+`      | Suma                          | `a + b`             |
+| `-`      | Resta                         | `a - b`             |
+| `*`      | Multiplicación                | `a * b`             |
+| `/`      | División                      | `a / b`             |
+| `//`     | División entera               | `a // b`            |
+| `%`      | Módulo (residuo)              | `a % b`             |
+| `^`      | Exponenciación                | `a ^ b`             |
+
+---
+
+### Conclusión
+
+Los operadores aritméticos en Lua son herramientas fundamentales para realizar cálculos matemáticos en cualquier programa. Lua permite realizar operaciones básicas como suma, resta, multiplicación y división, así como operaciones más avanzadas como la exponenciación y el cálculo de residuos. Además, la flexibilidad de Lua con operadores combinados y la división entera (`//`) proporciona una gran versatilidad para realizar cálculos más complejos. Es importante estar consciente de cómo Lua maneja la división por cero, devolviendo valores como `inf` o `NaN`, lo que puede ser útil en ciertas situaciones.

@@ -1,0 +1,182 @@
+---
+title: Ingresar datos
+description: A reference page in my new Starlight docs site.
+---
+
+El ingreso de datos es una tarea fundamental en cualquier programa, ya que permite que el usuario proporcione información que puede ser utilizada por el sistema. En Lua, se pueden ingresar datos de manera sencilla a través de funciones incorporadas. Este artículo cubrirá cómo capturar datos del usuario, cómo manejar esos datos y algunas mejores prácticas para interactuar con los usuarios de manera efectiva.
+
+---
+
+### 1. **Uso de la Función `io.read()`**
+
+En Lua, la función principal para **leer datos desde la entrada estándar** (teclado) es **`io.read()`**. Esta función permite al usuario ingresar datos desde el terminal o la consola. `io.read()` puede ser utilizada de diversas formas según el tipo de datos que se desean ingresar.
+
+#### 1.1. **Leer una Línea de Texto**
+
+Para leer una línea completa de texto, se utiliza **`io.read()`** sin argumentos. Esto lee toda la línea hasta que el usuario presiona **Enter**.
+
+#### Ejemplo:
+
+```lua
+print("Ingresa tu nombre:")
+nombre = io.read()  -- Lee la línea de texto ingresada por el usuario
+print("Hola, " .. nombre .. "!")
+```
+
+En este ejemplo, el programa solicita al usuario que ingrese su nombre. Después de que el usuario presiona **Enter**, el nombre ingresado se almacena en la variable `nombre` y se imprime un mensaje de saludo.
+
+---
+
+#### 1.2. **Leer Datos Específicos (números, etc.)**
+
+Cuando se desea leer un tipo de dato específico, como un número, **`io.read()`** puede recibir un argumento que indica qué tipo de datos se espera. Por ejemplo, si se espera un número entero, se puede usar `"number"` como argumento.
+
+#### Ejemplo:
+
+```lua
+print("Ingresa tu edad:")
+edad = tonumber(io.read())  -- Lee una línea de texto y convierte el valor a número
+print("Tu edad es: " .. edad)
+```
+
+En este caso, **`tonumber()`** convierte la cadena ingresada por el usuario a un número. Si el usuario ingresa algo que no es un número, la función devolverá **`nil`**, por lo que es importante realizar validaciones si se espera un tipo de dato específico.
+
+---
+
+#### 1.3. **Leer Varias Entradas a la Vez**
+
+Si necesitas leer varias entradas en una sola línea, puedes pasar varios parámetros a **`io.read()`** para especificar cuántos valores deseas capturar.
+
+#### Ejemplo:
+
+```lua
+print("Ingresa tu nombre y edad separados por espacio:")
+nombre, edad = io.read("*l"):match("([^ ]+) ([^ ]+)")  -- Lee la entrada y extrae nombre y edad
+print("Nombre: " .. nombre)
+print("Edad: " .. edad)
+```
+
+En este caso, la función **`io.read("*l")`** lee la línea completa y luego **`match()`** se usa para extraer los valores separados por espacios.
+
+---
+
+### 2. **Manejo de Entrada Invalida**
+
+En muchos casos, los usuarios pueden ingresar datos incorrectos o inesperados. Es fundamental manejar estos casos para evitar errores y asegurarse de que el programa funcione correctamente.
+
+#### Ejemplo: Validación de Edad
+
+```lua
+print("Ingresa tu edad:")
+edad = tonumber(io.read())  -- Intenta convertir la entrada a un número
+
+-- Verificar si la entrada es válida
+if edad == nil then
+    print("¡Error! Debes ingresar un número válido.")
+else
+    print("Tu edad es: " .. edad)
+end
+```
+
+En este ejemplo, si el usuario no ingresa un número válido, **`tonumber()`** devolverá **`nil`**. Luego, se verifica si la entrada es válida, y si no lo es, se muestra un mensaje de error.
+
+---
+
+### 3. **Usando `io.read()` con Formatos Específicos**
+
+**`io.read()`** puede aceptar diversos formatos para capturar diferentes tipos de datos. Los formatos más comunes incluyen:
+
+- **`"*l"`**: Lee una línea de texto completa.
+- **`"*n"`**: Lee un número (entero o flotante).
+- **`"*a"`**: Lee toda la entrada hasta el final del archivo o hasta que se termine la entrada.
+- **`"*line"`**: Es lo mismo que `"*l"`, lee una línea.
+  
+#### Ejemplo con Formato Específico:
+
+```lua
+print("Ingresa tu nombre completo:")
+nombre_completo = io.read("*l")  -- Lee una línea completa
+print("Hola, " .. nombre_completo)
+```
+
+---
+
+### 4. **Leer Entrada de Archivos (Opcional)**
+
+Aunque no es tan común como leer desde la consola, Lua también permite leer datos desde un archivo. Para ello, se usa el módulo **`io`** junto con la función **`io.open()`**.
+
+#### Ejemplo:
+
+```lua
+archivo = io.open("entrada.txt", "r")  -- Abre el archivo "entrada.txt" en modo lectura
+if archivo then
+    contenido = archivo:read("*a")  -- Lee todo el contenido del archivo
+    print("Contenido del archivo: " .. contenido)
+    archivo:close()  -- Cierra el archivo después de leer
+else
+    print("No se pudo abrir el archivo.")
+end
+```
+
+Este código lee todo el contenido del archivo `"entrada.txt"` y lo muestra en la consola.
+
+---
+
+### 5. **Interacción con el Usuario a Través de un Menú (Ejemplo de Flujo de Entrada)**
+
+Una forma de organizar la entrada de datos es creando un menú interactivo que guíe al usuario a través de diferentes opciones de entrada.
+
+#### Ejemplo:
+
+```lua
+print("Selecciona una opción:")
+print("1. Ingresar nombre")
+print("2. Ingresar edad")
+print("3. Salir")
+
+opcion = tonumber(io.read())
+
+if opcion == 1 then
+    print("Ingresa tu nombre:")
+    nombre = io.read()
+    print("Tu nombre es " .. nombre)
+elseif opcion == 2 then
+    print("Ingresa tu edad:")
+    edad = tonumber(io.read())
+    print("Tu edad es: " .. edad)
+elseif opcion == 3 then
+    print("Saliendo del programa...")
+else
+    print("Opción no válida.")
+end
+```
+
+En este ejemplo, el programa muestra un menú con tres opciones. Según la opción seleccionada por el usuario, solicita un dato y lo muestra.
+
+---
+
+### 6. **Mejores Prácticas para Ingresar Datos**
+
+- **Validación de Entradas**: Siempre valida la entrada del usuario para asegurarte de que es del tipo correcto y que tiene sentido dentro de tu programa.
+- **Manejo de Errores**: Maneja errores en caso de entradas incorrectas. Por ejemplo, usa `tonumber()` y verifica si el valor es `nil`.
+- **Mensajes Claros**: Proporciona instrucciones claras para que el usuario sepa qué tipo de datos se espera que ingrese.
+- **Uso de `io.read()` adecuadamente**: Usa formatos específicos con `io.read()` para capturar entradas de manera eficiente.
+
+---
+
+### Resumen de Funciones de Entrada
+
+| Función           | Descripción                                       |
+|-------------------|---------------------------------------------------|
+| `io.read()`       | Lee datos desde la entrada estándar (teclado).     |
+| `tonumber()`      | Convierte una cadena en número (entero o flotante).|
+| `tostring()`      | Convierte un valor a cadena de texto.              |
+| `io.open()`       | Abre un archivo para lectura/escritura.            |
+| `io.read("*l")`   | Lee una línea completa de texto.                   |
+| `io.read("*n")`   | Lee un número (entero o flotante).                 |
+
+---
+
+### Conclusión
+
+El ingreso de datos es una parte esencial en cualquier programa interactivo. Lua ofrece un conjunto de herramientas simples pero poderosas para capturar información desde la entrada estándar mediante **`io.read()`**. Es fundamental asegurarse de validar los datos ingresados y proporcionar mensajes claros para guiar al usuario. Con una correcta implementación de la entrada de datos, se pueden crear programas mucho más dinámicos y útiles.

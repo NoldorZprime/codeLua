@@ -3,134 +3,93 @@ title: Variables
 description: A reference page in my new Starlight docs site.
 ---
 
-En el lenguaje de programación **Lua**, las variables juegan un papel crucial para almacenar y manipular datos. Su flexibilidad y simplicidad permiten a los desarrolladores trabajar con datos de forma eficiente en proyectos pequeños y grandes, desde sistemas embebidos hasta videojuegos. Este artículo explora en profundidad cómo funcionan las variables en Lua, desde sus fundamentos hasta sus aplicaciones avanzadas.
+Las **variables** son elementos fundamentales en cualquier lenguaje de programación, incluyendo Lua. Son espacios de almacenamiento que permiten guardar datos que pueden ser utilizados y manipulados a lo largo del programa. Lua, al ser un lenguaje dinámico y sencillo, facilita la creación y el uso de variables.
 
-## ¿Qué es una Variable en Lua?
+## ¿Qué son las variables?
 
-En Lua, una variable es un identificador asociado con un valor almacenado en la memoria. Se utiliza para representar datos que pueden cambiar o ser reutilizados a lo largo de un programa. A diferencia de otros lenguajes, Lua utiliza un sistema de **tipado dinámico**, lo que significa que el tipo de una variable se determina en tiempo de ejecución y no necesita especificarse al declararla.
+En términos simples, una **variable** es un nombre simbólico que representa un valor en memoria. Este valor puede ser de cualquier tipo de datos: un número, una cadena de texto, una tabla o incluso una función. Las variables se utilizan para almacenar información que puede ser cambiada o utilizada en diferentes partes de un programa.
 
-```lua
-x = 10
-mensaje = "Hola Lua"
-```
+En Lua, no es necesario especificar un tipo para la variable, ya que Lua es un lenguaje **dynamically typed** (tipado dinámico). Esto significa que una variable puede cambiar su tipo a lo largo del tiempo. 
 
-En este caso:
-- `x` es una variable que contiene el valor numérico `10`.
-- `mensaje` contiene la cadena `"Hola Lua"`.
+## Declaración e Inicialización de Variables
 
-## Declaración y Asignación de Variables
+**Declaración de Variables**
 
-En Lua, no es necesario declarar explícitamente una variable antes de asignarle un valor. La declaración y la asignación suelen ocurrir simultáneamente.
+En Lua, la declaración de variables es muy simple. No necesitas especificar el tipo de la variable, solo el nombre y, opcionalmente, su valor inicial. El nombre de una variable debe comenzar con una letra o un guion bajo (`_`), seguido de letras, números o guiones bajos. Lua no permite nombres de variables que empiecen con un número.
+
+La sintaxis básica para declarar una variable en Lua es la siguiente:
 
 ```lua
-variable = 42
-print(variable)
+nombre_de_variable
 ```
 
-Puedes reasignar un nuevo valor a una variable en cualquier momento:
-```lua
-variable = "Nuevo valor"
-print(variable)
-```
-
-### Reglas para los nombres de las variables:
-1. Deben comenzar con una letra o un guion bajo (`_`).
-2. Pueden contener letras, números y guiones bajos, pero no otros caracteres especiales.
-3. Son **sensibles a mayúsculas y minúsculas**:
-   - `nombre` y `Nombre` son variables diferentes.
-
-Ejemplos válidos e inválidos:
-```lua
-_valida = 10
-nombre_usuario = 20
-1variable = 30
-```
-
-## Tipos de Datos en Lua
-
-Lua utiliza **tipos dinámicos**, lo que significa que no es necesario especificar el tipo de dato que almacena una variable. El intérprete de Lua asigna el tipo automáticamente según el valor.
-
-### Tipos básicos en Lua:
-1. **Nil**: Representa una ausencia de valor.
-2. **Number**: Almacena números (enteros o de punto flotante).
-3. **String**: Almacena texto.
-4. **Boolean**: Puede ser `true` o `false`.
-5. **Table**: Estructura de datos similar a arreglos o diccionarios.
-6. **Function**: Representa funciones.
-7. **Thread**: Corutinas para ejecución concurrente.
-8. **Userdata**: Representa datos personalizados definidos por el usuario.
+Por ejemplo:
 
 ```lua
-numero = 25
-texto = "Hola Lua"
-es_valido = true
-datos = nil
+edad
+nombre
 ```
 
-## Variables Globales y Locales
+Estas declaraciones definen las variables `edad` y `nombre`, pero no les asignan ningún valor.
 
-En Lua, las variables son **globales por defecto**, lo que significa que pueden ser accedidas desde cualquier parte del programa. Sin embargo, es posible declarar variables **locales** para limitar su alcance.
+**Inicialización de Variables**
 
-### 1. Variables Globales
-No necesitan una palabra clave especial y están disponibles en todo el programa.
-```lua
-x = 10
-print(x)
-```
-
-### 2. Variables Locales
-Se declaran utilizando la palabra clave `local`. Solo están disponibles dentro del bloque donde se declaran.
-```lua
-local y = 5
-print(y)
-
-if true then
-    local z = 20
-    print(z)
-end
-
--- print(z)  -- Error: z no está definida fuera del bloque
-```
-
-## Valores Nil
-
-El valor especial `nil` se utiliza para representar variables sin valor o no inicializadas. Si intentas acceder a una variable que no ha sido declarada, Lua la tratará como si tuviera el valor `nil`.
+Cuando declaras una variable, puedes inicializarla, es decir, asignarle un valor de forma inmediata. Para ello, utilizas el operador de asignación `=`. La sintaxis para inicializar una variable es la siguiente:
 
 ```lua
-print(inexistente)
-
-variable = nil
+nombre_de_variable = valor
 ```
 
-Asignar `nil` a una variable puede usarse para liberar memoria, ya que elimina la referencia al valor almacenado.
-
-## Uso de Tablas como Variables Compuestas
-
-En Lua, las **tablas** son estructuras de datos versátiles que permiten almacenar múltiples valores en una sola variable. Pueden actuar como listas, diccionarios o incluso objetos.
+Por ejemplo:
 
 ```lua
--- Tabla como lista
-colores = {"rojo", "verde", "azul"}
-print(colores[1])
-
--- Tabla como diccionario
-persona = {nombre = "Carlos", edad = 30}
-print(persona.nombre)
+edad = 25
+nombre = "Juan"
 ```
 
-## Buenas Prácticas para el Uso de Variables en Lua
+En este caso, la variable `edad` es inicializada con el valor `25` y la variable `nombre` con el valor `"Juan"`.
 
-1. **Utiliza nombres descriptivos**: Ayuda a entender el propósito de la variable.
-   ```lua
-   -- Poco claro
-   x = 10
-   -- Más claro
-   edad_usuario = 10
-   ```
+**Declaración e Inicialización en una sola línea**
 
-2. **Prefiere variables locales siempre que sea posible**: Esto evita conflictos y mejora la legibilidad del código.
+Es común declarar e inicializar variables en una sola línea, lo cual es práctico y eficiente en muchos casos. Ejemplo:
 
-3. **Libera memoria asignando nil a variables innecesarias**: Especialmente útil en programas de larga duración.
+```lua
+numero = 10
+mensaje = "Hola Mundo"
+```
 
-4. **Usa convenciones consistentes de nombres**:
-   - `camelCase` o `snake_case` son estilos comunes y aceptados.
+## Cambiar el Valor de las Variables
+
+Una de las ventajas de las variables en Lua es que su valor puede cambiar en cualquier momento del programa. Para modificar el valor de una variable, simplemente asignamos un nuevo valor:
+
+```lua
+edad = 30
+```
+
+Este cambio modificará el valor de la variable `edad` de `25` a `30`.
+
+**Ejemplo**
+
+A continuación, un ejemplo que muestra cómo declarar, inicializar y utilizar variables en Lua:
+
+```lua
+-- Declaración de variables
+local nombre = "Ana"
+local edad = 22
+local altura = 1.65
+
+-- Usar las variables
+print("Nombre: " .. nombre)
+print("Edad: " .. edad)
+print("Altura: " .. altura .. " metros")
+```
+
+**Salida:**
+
+```
+Nombre: Ana
+Edad: 22
+Altura: 1.65 metros
+```
+
+En este ejemplo, hemos declarado tres variables: `nombre`, `edad` y `altura`. Luego, las imprimimos utilizando la función `print()`, concatenando los valores con el operador `..`.

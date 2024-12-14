@@ -1,0 +1,201 @@
+---
+title: While
+description: A reference page in my new Starlight docs site.
+---
+
+En programación, los bucles son estructuras que permiten ejecutar un bloque de código repetidamente, según una condición especificada. El bucle **`while`** es una de las formas más comunes de realizar este tipo de iteraciones en muchos lenguajes de programación, incluyendo **Lua**. Este bucle ejecuta un bloque de código **mientras** una condición booleana se mantenga como **verdadera**.
+
+En este artículo, vamos a explorar cómo funciona el bucle **`while`** en Lua, cómo se declara, cómo controlar la ejecución del bucle y algunos ejemplos prácticos.
+
+---
+
+### 1. **¿Qué es el Bucle `while`?**
+
+Un bucle **`while`** en Lua es una estructura que repite un bloque de código de manera continua mientras se cumpla una condición específica. Si la condición es verdadera, el bloque de código dentro del bucle se ejecuta; una vez que la condición deja de ser verdadera, el bucle se detiene.
+
+La sintaxis básica de un **`while`** en Lua es la siguiente:
+
+```lua
+while condición do
+    -- Código que se ejecutará mientras la condición sea verdadera
+end
+```
+
+- **`while`**: Inicia el bucle y evalúa la condición.
+- **`condición`**: Es una expresión booleana que se evalúa antes de cada iteración. Si es **verdadera**, el bucle continuará; si es **falsa**, el bucle se detiene.
+- **`do`**: Indica el inicio del bloque de código que se ejecutará mientras la condición sea verdadera.
+- **`end`**: Marca el final del bucle.
+
+---
+
+### 2. **Funcionamiento del Bucle `while`**
+
+El bucle **`while`** sigue la siguiente lógica de ejecución:
+
+1. Se evalúa la **condición**.
+2. Si la condición es **verdadera**, se ejecuta el bloque de código dentro del bucle.
+3. Después de ejecutar el código, se vuelve a evaluar la condición.
+4. Si la condición sigue siendo **verdadera**, el ciclo continúa. Si es **falsa**, el bucle termina.
+
+Es importante recordar que si la condición siempre es verdadera, el bucle **entrará en un ciclo infinito**, lo que podría hacer que el programa se congele o consuma recursos innecesariamente.
+
+---
+
+### 3. **Ejemplo Básico de Bucle `while`**
+
+Un ejemplo simple de un bucle **`while`** es contar de 1 a 5 e imprimir cada número en la consola.
+
+#### Ejemplo:
+
+```lua
+contador = 1
+
+while contador <= 5 do
+    print(contador)
+    contador = contador + 1  -- Incrementa el contador en cada iteración
+end
+```
+
+En este ejemplo:
+- La condición es **`contador <= 5`**.
+- Mientras **`contador`** sea menor o igual a 5, el bloque de código se ejecutará.
+- El valor de **`contador`** se incrementa en cada iteración, asegurando que eventualmente la condición se vuelva falsa y el bucle termine.
+
+La salida será:
+
+```
+1
+2
+3
+4
+5
+```
+
+---
+
+### 4. **Controlando el Flujo con `break` y `continue`**
+
+Al igual que en otros lenguajes de programación, en Lua también puedes usar las palabras clave **`break`** y **`continue`** para controlar el flujo de ejecución dentro del bucle **`while`**.
+
+#### `break`:
+La palabra clave **`break`** termina inmediatamente el bucle, independientemente de si la condición es verdadera o falsa.
+
+#### Ejemplo con `break`:
+
+```lua
+contador = 1
+
+while contador <= 10 do
+    if contador == 6 then
+        break  -- Sale del bucle cuando el contador es 6
+    end
+    print(contador)
+    contador = contador + 1
+end
+```
+
+En este caso, el bucle se interrumpe cuando el valor de **`contador`** alcanza 6, por lo que la salida será:
+
+```
+1
+2
+3
+4
+5
+```
+
+#### `continue`:
+La palabra clave **`continue`** se utiliza para omitir el resto del código dentro del bucle y continuar con la siguiente iteración, sin salir completamente del bucle.
+
+#### Ejemplo con `continue`:
+
+```lua
+contador = 0
+
+while contador < 5 do
+    contador = contador + 1
+    if contador == 3 then
+        continue  -- Omite el print cuando el contador es 3
+    end
+    print(contador)
+end
+```
+
+En este ejemplo, el valor **`3`** no se imprimirá porque la instrucción **`continue`** omite el bloque de código dentro del bucle cuando **`contador`** es igual a 3. La salida será:
+
+```
+1
+2
+4
+5
+```
+
+---
+
+### 5. **Evitar los Bucles Infinitos**
+
+Es fundamental evitar los bucles infinitos, donde la condición siempre es verdadera y nunca termina. Esto puede suceder si la condición no cambia dentro del bucle o si hay un error lógico en el código.
+
+#### Ejemplo de un bucle infinito (incorrecto):
+
+```lua
+contador = 1
+
+while contador > 0 do
+    print(contador)
+end
+```
+
+En este caso, el bucle nunca termina porque **`contador`** siempre es mayor que cero y no se modifica dentro del bucle.
+
+Para evitar este tipo de errores, asegúrate de modificar las variables de control dentro del bucle y de que la condición pueda volverse falsa en algún momento.
+
+---
+
+### 6. **Bucle `while` con Condición al Final**
+
+En Lua, aunque la estructura tradicional de **`while`** evalúa la condición antes de ejecutar el código, también se puede usar un bucle **`repeat-until`** (similar a un **`do-while`** en otros lenguajes) en el que la condición se evalúa al final de cada iteración. Esto asegura que el bloque de código se ejecute al menos una vez.
+
+#### Sintaxis de `repeat-until`:
+
+```lua
+repeat
+    -- Código que se ejecutará al menos una vez
+until condición
+```
+
+#### Ejemplo con `repeat-until`:
+
+```lua
+contador = 1
+
+repeat
+    print(contador)
+    contador = contador + 1
+until contador > 5
+```
+
+La salida será igual al ejemplo anterior, pero con la diferencia de que el código dentro del bucle se ejecuta al menos una vez, incluso si la condición es **falsa** al principio.
+
+---
+
+### 7. **Resumen de la Estructura del Bucle `while`**
+
+| Elemento        | Descripción                                                        |
+|-----------------|--------------------------------------------------------------------|
+| `while`         | Comienza la evaluación de la condición                             |
+| `condición`     | Expresión booleana que determina si el bucle continúa o se detiene |
+| `do`            | Inicio del bloque de código que se ejecutará si la condición es verdadera |
+| `end`           | Finaliza el bucle                                                  |
+| `break`         | Sale del bucle inmediatamente                                      |
+| `continue`      | Omite el resto del código en la iteración actual y continúa con la siguiente |
+
+---
+
+### 8. **Conclusión**
+
+El bucle **`while`** es una herramienta poderosa para repetir una acción mientras se cumpla una condición en Lua. Es esencial para tareas repetitivas, como procesar elementos de una lista, esperar que una condición cambie, o realizar cálculos iterativos. 
+
+Sin embargo, es importante tener cuidado con las condiciones que pueden llevar a bucles infinitos y asegurarse de que las variables dentro del bucle cambien de manera adecuada para evitar errores lógicos.
+
+A través del uso de palabras clave como **`break`** y **`continue`**, puedes tener un control aún más fino sobre el flujo de ejecución dentro del bucle y crear programas más eficientes y flexibles.

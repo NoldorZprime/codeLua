@@ -1,0 +1,229 @@
+---
+title: Bucle for
+description: A reference page in my new Starlight docs site.
+---
+
+### El Bucle `for` en Lua
+
+El bucle **`for`** en Lua es una de las estructuras de control más utilizadas para ejecutar un bloque de código repetidamente un número determinado de veces. A diferencia de otros lenguajes, Lua ofrece una sintaxis de bucle **`for`** flexible y fácil de entender. Este bucle es particularmente útil cuando conocemos de antemano cuántas veces debe ejecutarse el bloque de código, ya sea para iterar sobre un rango de números o para recorrer tablas.
+
+En este artículo, exploraremos cómo funciona el bucle **`for`** en Lua, sus diferentes variantes, su sintaxis, ejemplos prácticos y cómo se utiliza para manejar tanto rangos de números como estructuras de datos.
+
+---
+
+### 1. **¿Qué es el Bucle `for` en Lua?**
+
+El bucle **`for`** en Lua se utiliza para repetir un bloque de código un número determinado de veces. Dependiendo de la sintaxis utilizada, podemos contar de una manera específica o iterar sobre las claves de una tabla. La estructura básica del bucle **`for`** permite definir el valor inicial, el valor final y el valor de incremento, lo que proporciona un control completo sobre la iteración.
+
+---
+
+### 2. **Sintaxis del Bucle `for`**
+
+Existen dos formas de bucles **`for`** en Lua:
+
+#### **a. Bucle `for` Numérico**
+
+El bucle **`for`** numérico en Lua sigue esta sintaxis:
+
+```lua
+for variable = inicio, fin, paso do
+    -- Bloque de código
+end
+```
+
+- **`variable`**: Es la variable de control que se actualiza en cada iteración.
+- **`inicio`**: El valor inicial de la variable.
+- **`fin`**: El valor final. El bucle se ejecutará hasta que la variable alcance o sobrepase este valor.
+- **`paso`** (opcional): Es el valor que se suma a la variable de control en cada iteración. Si no se especifica, el valor predeterminado es 1.
+
+#### Ejemplo de un bucle numérico:
+
+```lua
+for i = 1, 5 do
+    print(i)
+end
+```
+
+En este ejemplo:
+- El bucle comienza con `i = 1` y termina cuando `i` es mayor que 5.
+- El valor de `i` se incrementa automáticamente en 1 en cada iteración (ya que no se especifica el paso).
+  
+La salida será:
+
+```
+1
+2
+3
+4
+5
+```
+
+---
+
+#### **b. Bucle `for` Inverso**
+
+Es posible especificar un paso negativo para crear un bucle que cuente de forma inversa. Esto es útil cuando deseas recorrer un rango de números en orden descendente.
+
+Ejemplo de un bucle **`for`** inverso:
+
+```lua
+for i = 5, 1, -1 do
+    print(i)
+end
+```
+
+La salida será:
+
+```
+5
+4
+3
+2
+1
+```
+
+En este caso, el bucle comienza con `i = 5` y disminuye de 1 en 1 hasta llegar a 1.
+
+---
+
+#### **c. Bucle `for` con Paso Especificado**
+
+Podemos especificar un paso diferente a 1 o -1 para incrementar o decrementar la variable de control por un valor determinado.
+
+Ejemplo de un bucle con paso de 2:
+
+```lua
+for i = 1, 10, 2 do
+    print(i)
+end
+```
+
+La salida será:
+
+```
+1
+3
+5
+7
+9
+```
+
+En este ejemplo, el valor de `i` aumenta de 2 en 2, comenzando desde 1 hasta 9.
+
+---
+
+### 3. **Bucle `for` con Tablas**
+
+En Lua, las tablas son estructuras clave-valor, y podemos usar el bucle **`for`** para iterar sobre las claves y valores de una tabla. A continuación, se muestra cómo usar un bucle **`for`** para recorrer una tabla.
+
+#### Ejemplo de un bucle `for` con tablas:
+
+```lua
+local frutas = {manzana = 1, naranja = 2, plátano = 3}
+
+for clave, valor in pairs(frutas) do
+    print(clave, valor)
+end
+```
+
+En este caso, **`pairs`** devuelve cada clave y valor de la tabla **`frutas`** en cada iteración. La salida será:
+
+```
+manzana 1
+naranja 2
+plátano 3
+```
+
+El orden de iteración no está garantizado, ya que **`pairs`** recorre las claves de una tabla de manera no ordenada.
+
+Si deseas recorrer los índices de una tabla de manera ordenada (como un arreglo), puedes usar **`ipairs`**:
+
+#### Ejemplo con `ipairs`:
+
+```lua
+local frutas = {"manzana", "naranja", "plátano"}
+
+for i, fruta in ipairs(frutas) do
+    print(i, fruta)
+end
+```
+
+En este caso, **`ipairs`** devuelve índices numéricos y sus correspondientes valores en la tabla **`frutas`**. La salida será:
+
+```
+1 manzana
+2 naranja
+3 plátano
+```
+
+---
+
+### 4. **Diferencias entre `pairs` y `ipairs`**
+
+- **`pairs`**: Se usa para iterar sobre todas las claves de una tabla, sin importar si la tabla tiene índices consecutivos. Se utiliza cuando las claves son arbitrarias o cuando la tabla tiene claves no numéricas.
+- **`ipairs`**: Se usa para iterar sobre las claves de una tabla en un rango secuencial numérico (desde 1 hasta el primer índice `nil`). Ideal para recorrer arreglos o listas.
+
+---
+
+### 5. **Controlando el Bucle con `break` y `continue`**
+
+Al igual que otros lenguajes de programación, Lua permite controlar el flujo de un bucle con las instrucciones **`break`** y **`return`**:
+
+- **`break`**: Sale inmediatamente del bucle, independientemente de la condición de terminación.
+- **`return`**: Finaliza el bucle y la función en la que se encuentra.
+
+Ejemplo con `break`:
+
+```lua
+for i = 1, 10 do
+    if i == 5 then
+        break  -- Sale del bucle cuando i es igual a 5
+    end
+    print(i)
+end
+```
+
+La salida será:
+
+```
+1
+2
+3
+4
+```
+
+El bucle se interrumpe cuando `i` es igual a 5.
+
+---
+
+### 6. **Usos Comunes del Bucle `for`**
+
+El bucle **`for`** es útil cuando se necesita iterar un número determinado de veces, como:
+
+- **Contar de un número a otro**, como en los ejemplos anteriores.
+- **Procesar elementos en una tabla**, como arrays o listas.
+- **Repetir una tarea específica un número fijo de veces**.
+
+#### Ejemplo de contar hasta un número:
+
+```lua
+local total = 0
+for i = 1, 5 do
+    total = total + i
+end
+print("La suma total es:", total)
+```
+
+En este ejemplo, el bucle **`for`** suma los números del 1 al 5, y la salida será:
+
+```
+La suma total es: 15
+```
+
+---
+
+### 7. **Conclusión**
+
+El bucle **`for`** en Lua es una herramienta poderosa para repetir un bloque de código un número determinado de veces. Su flexibilidad permite manejar tanto secuencias numéricas simples como iteraciones complejas sobre tablas. Con sus variantes **numéricas** e **inversas**, así como el uso de **`pairs`** y **`ipairs`** para recorrer tablas, el bucle **`for`** es adecuado para una amplia gama de tareas de programación.
+
+Dominar el uso del bucle **`for`** te permitirá escribir código más limpio y eficiente cuando necesites realizar tareas repetitivas o procesar datos de manera secuencial.

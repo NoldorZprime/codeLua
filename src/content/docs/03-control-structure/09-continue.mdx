@@ -1,0 +1,148 @@
+---
+title: Continue
+description: A reference page in my new Starlight docs site.
+---
+
+### El Uso de `continue` en Lua
+
+La instrucción **`continue`** es una herramienta útil en muchos lenguajes de programación que permite saltar a la siguiente iteración de un bucle sin ejecutar el resto del código dentro de esa iteración. Sin embargo, es importante destacar que **`continue`** no está soportado directamente en Lua. Aunque en algunos lenguajes como C, Python o JavaScript, **`continue`** es una palabra clave válida para interrumpir la iteración actual y saltar a la siguiente, en Lua esto no existe como una palabra clave oficial.
+
+En este artículo, exploraremos cómo se podría simular el comportamiento de **`continue`** en Lua utilizando diferentes enfoques y cómo se puede utilizar para controlar el flujo dentro de los bucles.
+
+---
+
+### 1. **¿Qué es `continue` en Otros Lenguajes?**
+
+En lenguajes como Python, C, o JavaScript, **`continue`** permite que el bucle salte el resto del código en la iteración actual y pase directamente a la siguiente. Esto es útil cuando se desea omitir ciertas condiciones dentro de un bucle y seguir con la siguiente iteración sin tener que escribir bloques de código adicionales.
+
+Por ejemplo, en Python:
+
+```python
+for i in range(1, 10):
+    if i == 5:
+        continue
+    print(i)
+```
+
+En este caso, el valor 5 se omite, y el bucle continúa con los números 1 a 4 y 6 a 9.
+
+---
+
+### 2. **Simulando el Comportamiento de `continue` en Lua**
+
+Aunque Lua no tiene un **`continue`** nativo, podemos simular este comportamiento utilizando una combinación de **condiciones `if`** y **`goto`**. El uso de **`goto`** en Lua nos permite saltar a una etiqueta específica, lo que puede servir para simular el salto a la siguiente iteración de un bucle.
+
+#### **Sintaxis para simular `continue` con `goto`**
+
+```lua
+for i = 1, 10 do
+    if i == 5 then
+        goto continuar
+    end
+    print(i)
+
+    ::continuar::
+end
+```
+
+En este ejemplo:
+- Cuando `i` es igual a 5, la instrucción **`goto continuar`** lleva el flujo de ejecución a la etiqueta `::continuar::`, lo que hace que el resto del código de la iteración se omita y el bucle pase a la siguiente iteración.
+  
+**Salida:**
+```
+1
+2
+3
+4
+6
+7
+8
+9
+10
+```
+
+#### Explicación:
+- Cuando `i` es igual a 5, el **`goto`** hace que el bucle salte al final de la iteración, evitando la ejecución de `print(i)` en ese caso.
+- En este enfoque, `goto` actúa como un sustituto de **`continue`**, aunque no es exactamente lo mismo, ya que **`goto`** puede ser menos legible si se usa en exceso.
+
+---
+
+### 3. **Uso de `if` para Simular `continue`**
+
+Otra forma de simular el comportamiento de **`continue`** es utilizando una estructura **`if`** para omitir la ejecución del código en ciertos casos. Este método es más directo y no depende de **`goto`**, aunque puede generar bloques de código más largos.
+
+#### Ejemplo con `if`:
+
+```lua
+for i = 1, 10 do
+    if i ~= 5 then
+        print(i)
+    end
+end
+```
+
+**Salida:**
+```
+1
+2
+3
+4
+6
+7
+8
+9
+10
+```
+
+En este caso, el bucle continúa ejecutándose, pero cuando `i` es igual a 5, la instrucción **`print(i)`** se omite, lo que simula el comportamiento de **`continue`** sin la necesidad de usar **`goto`**.
+
+---
+
+### 4. **Simulando `continue` con Funciones**
+
+Si tu bucle tiene una estructura más compleja o si deseas encapsular el comportamiento de **`continue`** de forma reutilizable, puedes optar por crear una función que controle la ejecución del bucle. Esto puede hacer que el código sea más modular y claro.
+
+#### Ejemplo con función:
+
+```lua
+function continuar(i)
+    if i == 5 then
+        return true
+    end
+    return false
+end
+
+for i = 1, 10 do
+    if continuar(i) then
+        -- Este código actúa como `continue` al evitar ejecutar el resto del bucle
+        goto continuar
+    end
+    print(i)
+
+    ::continuar::
+end
+```
+
+Este enfoque combina el uso de funciones y **`goto`** para simular el comportamiento de **`continue`**. La función `continuar(i)` determina si el valor de `i` es igual a 5, y si es así, devuelve `true`, lo que causa que se salte la iteración.
+
+---
+
+### 5. **Consideraciones sobre el Uso de `goto`**
+
+Aunque el uso de **`goto`** para simular **`continue`** es funcional, es importante tener en cuenta que el uso excesivo de **`goto`** puede hacer que el código sea más difícil de leer y mantener. El salto de un lugar a otro dentro del código puede llevar a un flujo confuso, por lo que debe usarse con moderación.
+
+En la mayoría de los casos, la solución más clara es usar un simple **`if`** para omitir la ejecución de la lógica dentro de un bucle, tal como se mostró en el ejemplo anterior.
+
+---
+
+### 6. **¿Por Qué Lua No Tiene `continue`?**
+
+La decisión de no incluir una palabra clave como **`continue`** en Lua probablemente se deba a la filosofía del lenguaje de mantener las cosas simples y evitar el uso de estructuras complejas que puedan hacer el código menos claro. Lua opta por estructuras controladas más explícitas, como las condicionales **`if`** y las etiquetas de **`goto`**, en lugar de palabras clave adicionales.
+
+---
+
+### 7. **Conclusión**
+
+Aunque Lua no tiene una instrucción nativa de **`continue`**, podemos lograr el mismo comportamiento utilizando técnicas como el uso de **`goto`** o simples estructuras **`if`**. La capacidad de simular **`continue`** en Lua proporciona flexibilidad para controlar el flujo de los bucles de manera eficiente, aunque siempre debemos ser conscientes de la legibilidad y claridad del código.
+
+Si bien el uso de **`goto`** permite simular un comportamiento similar al de **`continue`**, es importante no abusar de esta herramienta para evitar un código confuso o difícil de mantener. En general, las soluciones más sencillas y explícitas, como usar **`if`** para omitir la ejecución de código en ciertas condiciones, son preferibles en la mayoría de los casos.

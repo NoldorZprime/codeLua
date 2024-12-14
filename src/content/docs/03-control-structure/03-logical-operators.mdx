@@ -1,0 +1,203 @@
+---
+title: Operadores lógicos
+description: A reference page in my new Starlight docs site.
+---
+
+### Operadores Lógicos en Lua
+
+En programación, los **operadores lógicos** son utilizados para combinar o modificar expresiones booleanas. Estos operadores permiten tomar decisiones basadas en múltiples condiciones y son fundamentales en la creación de estructuras de control como **condicionales** y **bucles**. En Lua, los operadores lógicos son simples pero poderosos, y permiten manipular valores lógicos de manera eficiente.
+
+En este artículo, exploraremos los **operadores lógicos** en **Lua**, cómo funcionan y cómo se utilizan en diferentes contextos.
+
+---
+
+### 1. **¿Qué Son los Operadores Lógicos?**
+
+Los operadores lógicos se usan para combinar varias expresiones booleanas o para realizar operaciones sobre valores de tipo booleano. Los operadores lógicos más comunes son:
+
+- **`and`**: Y lógico
+- **`or`**: O lógico
+- **`not`**: No lógico
+
+Cada uno de estos operadores tiene un propósito específico y se comporta de manera diferente según los valores con los que se operen.
+
+---
+
+### 2. **Operador `and` (Y Lógico)**
+
+El operador **`and`** realiza una operación lógica de **"Y"** entre dos expresiones. Devuelve **`true`** solo si ambas expresiones son verdaderas; de lo contrario, devuelve **`false`**.
+
+#### Ejemplo:
+
+```lua
+a = true
+b = false
+c = true
+
+print(a and b)  -- false, porque b es false
+print(a and c)  -- true, porque tanto a como c son true
+```
+
+El operador **`and`** puede ser utilizado en cualquier tipo de expresión, no solo valores booleanos. Lua evalúa las expresiones de izquierda a derecha y devuelve el primer valor "falsy" que encuentra. Si ambas expresiones son verdaderas (o "truthy"), devuelve el último valor evaluado.
+
+#### Ejemplo con valores distintos a booleanos:
+
+```lua
+a = 10
+b = 20
+c = 0
+
+print(a and b)  -- 20, porque ambos valores son "truthy"
+print(b and c)  -- 0, porque c es "falsy" (cero)
+print(c and a)  -- 0, porque c es "falsy"
+```
+
+---
+
+### 3. **Operador `or` (O Lógico)**
+
+El operador **`or`** realiza una operación lógica de **"O"** entre dos expresiones. Devuelve **`true`** si al menos una de las expresiones es verdadera; si ambas son falsas, devuelve **`false`**.
+
+#### Ejemplo:
+
+```lua
+a = false
+b = true
+c = false
+
+print(a or b)  -- true, porque b es true
+print(a or c)  -- false, porque ambos valores son false
+```
+
+Al igual que con el operador **`and`**, Lua evalúa las expresiones de izquierda a derecha y devuelve el primer valor "truthy" que encuentra. Si ambas expresiones son falsas, devuelve el último valor evaluado.
+
+#### Ejemplo con valores distintos a booleanos:
+
+```lua
+a = 10
+b = 0
+c = 5
+
+print(a or b)  -- 10, porque a es "truthy"
+print(b or c)  -- 5, porque b es "falsy" y c es "truthy"
+print(b or 0)  -- 0, porque ambos son "falsy"
+```
+
+---
+
+### 4. **Operador `not` (Negación Lógica)**
+
+El operador **`not`** invierte el valor de una expresión booleana. Si la expresión es **`true`**, devuelve **`false`**, y si la expresión es **`false`**, devuelve **`true`**.
+
+#### Ejemplo:
+
+```lua
+a = true
+b = false
+
+print(not a)  -- false, porque a es true
+print(not b)  -- true, porque b es false
+```
+
+El operador **`not`** también puede aplicarse a valores no booleanos. Si el valor es "truthy", devuelve **`false`**, y si es "falsy", devuelve **`true`**.
+
+#### Ejemplo con valores distintos a booleanos:
+
+```lua
+x = 5
+y = 0
+
+print(not x)  -- false, porque x es "truthy"
+print(not y)  -- true, porque y es "falsy" (cero)
+```
+
+---
+
+### 5. **Uso de Operadores Lógicos en Condicionales**
+
+Los operadores lógicos son frecuentemente utilizados en estructuras de control como **`if`** y **`while`** para combinar varias condiciones y tomar decisiones complejas.
+
+#### Ejemplo con `if`:
+
+```lua
+a = 5
+b = 10
+c = 15
+
+if a < b and b < c then
+    print("b está entre a y c")
+end
+```
+
+En este ejemplo, la condición **`a < b and b < c`** se evalúa como **verdadera**, porque ambas expresiones son **`true`**.
+
+#### Ejemplo con `or`:
+
+```lua
+a = 5
+b = 10
+
+if a == 5 or b == 5 then
+    print("Al menos una de las condiciones es verdadera")
+end
+```
+
+Aquí, la condición **`a == 5 or b == 5`** también se evalúa como **verdadera**, ya que **`a == 5`** es **`true`**.
+
+---
+
+### 6. **Combinación de Operadores Lógicos**
+
+Los operadores lógicos pueden combinarse para formar expresiones más complejas. El uso adecuado de los operadores **`and`**, **`or`** y **`not`** permite crear condiciones que combinan múltiples reglas lógicas.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 20
+c = 5
+
+if (a < b and b > c) or (c == 5) then
+    print("La condición es verdadera")
+end
+```
+
+En este caso, la condición **`(a < b and b > c) or (c == 5)`** es verdadera porque **`a < b and b > c`** es **true** y **`c == 5`** también es **true**.
+
+---
+
+### 7. **Prioridad de los Operadores Lógicos**
+
+Cuando se combinan varios operadores lógicos en una misma expresión, la **prioridad** de evaluación sigue una regla establecida:
+
+1. **`not`** tiene la mayor prioridad, se evalúa primero.
+2. **`and`** tiene una prioridad intermedia.
+3. **`or`** tiene la menor prioridad.
+
+#### Ejemplo de prioridad:
+
+```lua
+x = true
+y = false
+z = true
+
+print(not x and y or z)  -- true
+```
+
+En este caso, **`not x`** se evalúa primero (devuelve **`false`**), luego se evalúa **`false and y`** (lo cual da **`false`**), y finalmente se evalúa **`false or z`** (lo cual da **`true`**).
+
+---
+
+### 8. **Resumen de Operadores Lógicos en Lua**
+
+| Operador | Descripción                        | Ejemplo       |
+|----------|------------------------------------|---------------|
+| `and`    | Devuelve **`true`** si ambas expresiones son verdaderas | `a and b`     |
+| `or`     | Devuelve **`true`** si al menos una de las expresiones es verdadera | `a or b`      |
+| `not`    | Invierte el valor de la expresión | `not a`       |
+
+---
+
+### 9. **Conclusión**
+
+Los **operadores lógicos** en Lua son esenciales para manejar la lógica de decisiones dentro de un programa. Permiten combinar múltiples condiciones y manipular valores booleanos de manera eficiente. Al comprender y utilizar correctamente los operadores **`and`**, **`or`** y **`not`**, puedes crear programas más complejos y tomar decisiones basadas en varias condiciones. Estos operadores son fundamentales para estructuras de control y ofrecen una gran flexibilidad en la programación.

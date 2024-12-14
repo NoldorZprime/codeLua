@@ -1,0 +1,93 @@
+---
+title: Comentarios
+description: A reference page in my new Starlight docs site.
+---
+
+
+Los **comentarios** son esenciales en cualquier lenguaje de programación, ya que permiten explicar el propósito y la funcionalidad del código de manera que otros (o uno mismo en el futuro) puedan entenderlo fácilmente. En Lua, los comentarios se utilizan para documentar el código, desactivar temporalmente secciones del código o hacer anotaciones sobre cómo funciona una parte del programa. Lua ofrece varias formas de agregar comentarios.
+
+A continuación, se detallan las diferentes formas de comentar en Lua.
+
+### 1. **Comentarios de una sola línea**
+
+El comentario de una sola línea se utiliza para añadir notas cortas o explicaciones en una sola línea de código. Se empieza con dos barras (`--`). Todo lo que siga después de `--` en esa línea será tratado como un comentario y no será ejecutado por el intérprete de Lua.
+
+#### Ejemplo:
+
+```lua
+-- Este es un comentario de una sola línea
+edad = 25  -- Este comentario está al final de una línea de código
+```
+
+En este ejemplo, el texto que aparece después de `--` es ignorado por Lua, ya que es considerado un comentario.
+
+#### Usos comunes:
+- Explicar una línea de código específica.
+- Dejar una breve nota o recordatorio.
+- Desactivar temporalmente parte del código.
+
+### 2. **Comentarios de varias líneas (Comentarios multilínea)**
+
+Los comentarios de varias líneas se utilizan cuando se desea comentar más de una línea de código. Para hacerlo, Lua utiliza una forma especial de comentario de bloque, que comienza con `--[[` y termina con `--]]`. Este tipo de comentario es ideal para documentar secciones grandes del código o añadir notas detalladas.
+
+#### Ejemplo:
+
+```lua
+--[[
+Este es un comentario de varias líneas.
+Puedes escribir aquí todo lo que quieras, 
+incluso más de una línea de texto.
+Lua ignorará este bloque completo de comentarios.
+]]
+```
+
+En este ejemplo, todo el bloque de código entre `--[[` y `--]]` será tratado como un comentario, sin importar cuántas líneas ocupe.
+
+#### Usos comunes:
+- Documentar bloques de código grandes o complejos.
+- Añadir descripciones detalladas sobre el funcionamiento de funciones o módulos.
+- Hacer anotaciones o recordatorios extensos dentro del código.
+
+
+### 3. **Comentarios dentro de cadenas de texto**
+
+En ocasiones, se puede tener la necesidad de incluir comentarios dentro de cadenas de texto. Aunque no es una práctica común, es posible hacerlo si necesitas almacenar comentarios como parte de datos. Sin embargo, estos comentarios no son ignorados por el intérprete de Lua, ya que forman parte del valor de la cadena.
+
+#### Ejemplo:
+
+```lua
+mensaje = "Este es un texto con un comentario // Esto no es un comentario, solo parte de la cadena"
+```
+
+Este tipo de comentario no es reconocido como tal por Lua y se guarda como texto dentro de la cadena, por lo que no afecta al código.
+
+### 4. **Desactivar temporalmente el código**
+
+Una forma útil de comentar en Lua es desactivar temporalmente ciertas líneas o bloques de código sin eliminarlos. Esto se puede hacer utilizando comentarios de una sola línea o de varias líneas, lo que es útil cuando se está probando algo o depurando el código.
+
+#### Ejemplo de desactivación temporal de código:
+
+```lua
+-- El siguiente código está desactivado temporalmente
+--print("Esto no se ejecutará")
+```
+
+Otro ejemplo con comentarios multilínea:
+
+```lua
+--[[
+print("Este bloque de código está desactivado")
+]]
+```
+
+Estos comentarios permiten que el código siga presente pero no se ejecute durante la ejecución del programa, lo cual es útil para pruebas o para revisar cómo cambia el comportamiento del código al eliminar ciertas partes.
+
+### 5. **Buenas prácticas para comentar en Lua**
+
+Aunque es posible escribir comentarios de muchas maneras, seguir buenas prácticas al escribirlos es fundamental para mantener el código limpio y comprensible. Aquí te dejamos algunas recomendaciones:
+
+- **Sé claro y conciso**: Los comentarios deben ser fáciles de leer y comprender. Evita comentarios demasiado largos y complicados.
+- **Explica "por qué" más que "cómo"**: Los comentarios deben explicar por qué se hace algo, no cómo. El código ya debe ser lo suficientemente claro como para entender el "cómo".
+- **No comentas lo obvio**: No pongas comentarios sobre lo que es evidente. Por ejemplo, un comentario como `-- Sumar 2 + 2` es innecesario si el código es claro.
+- **Usa comentarios para mejorar la legibilidad**: Usa comentarios para separar secciones del código y explicar los pasos o las decisiones clave.
+- **Actualiza los comentarios cuando cambies el código**: Asegúrate de que los comentarios reflejen siempre el estado actual del código. Los comentarios desactualizados pueden ser más dañinos que útiles.

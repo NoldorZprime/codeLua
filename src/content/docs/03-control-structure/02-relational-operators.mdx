@@ -1,0 +1,213 @@
+---
+title: Operadores de Relación
+description: A reference page in my new Starlight docs site.
+---
+
+En programación, los **operadores de relación** son utilizados para comparar dos valores. Estos operadores devuelven un valor booleano (`true` o `false`), dependiendo de si la relación entre los valores es verdadera o falsa. Los operadores de relación son fundamentales en las estructuras de control, como **condicionales** y **bucles**, ya que permiten tomar decisiones basadas en comparaciones.
+
+En este artículo, exploraremos los **operadores de relación** en **Lua**, sus tipos y cómo se utilizan en diversos contextos.
+
+---
+
+### 1. **¿Qué Son los Operadores de Relación?**
+
+Los operadores de relación permiten comparar dos valores y determinar cómo se relacionan entre sí. Los operadores básicos de relación en Lua son:
+
+- **`==`**: Igual a
+- **`~=`**: Distinto de
+- **`<`**: Menor que
+- **`>`**: Mayor que
+- **`<=`**: Menor o igual que
+- **`>=`**: Mayor o igual que
+
+Estos operadores se utilizan para realizar comparaciones entre valores numéricos, cadenas de texto, tablas, y otros tipos de datos. 
+
+---
+
+### 2. **Operador de Igualdad (`==`)**
+
+El operador **`==`** compara dos valores y devuelve **`true`** si los valores son iguales, y **`false`** si son diferentes.
+
+#### Ejemplo:
+
+```lua
+a = 5
+b = 5
+c = 10
+
+print(a == b)  -- true, porque 5 es igual a 5
+print(a == c)  -- false, porque 5 no es igual a 10
+```
+
+**Nota:** Para cadenas de texto, el operador **`==`** también verifica si ambas cadenas son idénticas.
+
+#### Ejemplo con cadenas:
+
+```lua
+str1 = "Lua"
+str2 = "Lua"
+str3 = "Python"
+
+print(str1 == str2)  -- true
+print(str1 == str3)  -- false
+```
+
+---
+
+### 3. **Operador de Desigualdad (`~=`)**
+
+El operador **`~=`** compara dos valores y devuelve **`true`** si son diferentes, y **`false`** si son iguales.
+
+#### Ejemplo:
+
+```lua
+x = 5
+y = 10
+
+print(x ~= y)  -- true, porque 5 no es igual a 10
+print(x ~= 5)  -- false, porque 5 es igual a 5
+```
+
+---
+
+### 4. **Operador de Menor Que (`<`)**
+
+El operador **`<`** compara dos valores y devuelve **`true`** si el valor de la izquierda es **menor** que el valor de la derecha.
+
+#### Ejemplo:
+
+```lua
+a = 3
+b = 5
+
+print(a < b)  -- true, porque 3 es menor que 5
+print(b < a)  -- false, porque 5 no es menor que 3
+```
+
+---
+
+### 5. **Operador de Mayor Que (`>`)**
+
+El operador **`>`** compara dos valores y devuelve **`true`** si el valor de la izquierda es **mayor** que el valor de la derecha.
+
+#### Ejemplo:
+
+```lua
+a = 10
+b = 7
+
+print(a > b)  -- true, porque 10 es mayor que 7
+print(b > a)  -- false, porque 7 no es mayor que 10
+```
+
+---
+
+### 6. **Operador de Menor o Igual Que (`<=`)**
+
+El operador **`<=`** compara dos valores y devuelve **`true`** si el valor de la izquierda es **menor o igual** que el valor de la derecha.
+
+#### Ejemplo:
+
+```lua
+x = 8
+y = 8
+z = 10
+
+print(x <= y)  -- true, porque 8 es igual a 8
+print(x <= z)  -- true, porque 8 es menor que 10
+print(z <= x)  -- false, porque 10 no es menor ni igual a 8
+```
+
+---
+
+### 7. **Operador de Mayor o Igual Que (`>=`)**
+
+El operador **`>=`** compara dos valores y devuelve **`true`** si el valor de la izquierda es **mayor o igual** que el valor de la derecha.
+
+#### Ejemplo:
+
+```lua
+x = 15
+y = 10
+
+print(x >= y)  -- true, porque 15 es mayor que 10
+print(y >= x)  -- false, porque 10 no es mayor ni igual a 15
+```
+
+---
+
+### 8. **Comparaciones con Cadenas de Texto**
+
+En Lua, las comparaciones de cadenas de texto funcionan de manera lexicográfica (es decir, alfabéticamente) cuando se utilizan los operadores de relación.
+
+#### Ejemplo con Cadenas:
+
+```lua
+str1 = "apple"
+str2 = "banana"
+
+print(str1 < str2)   -- true, porque "apple" es menor que "banana" en orden alfabético
+print(str1 > str2)   -- false, porque "apple" no es mayor que "banana"
+print(str1 == "apple")  -- true, porque las cadenas son iguales
+```
+
+En este caso, **`<`** y **`>`** se comportan de manera similar a cómo lo harían en un diccionario o un listado alfabético.
+
+---
+
+### 9. **Operadores de Relación en Condicionales**
+
+Los operadores de relación son frecuentemente utilizados dentro de **condicionales** (como **`if`**), para tomar decisiones basadas en comparaciones.
+
+#### Ejemplo:
+
+```lua
+a = 5
+b = 10
+
+if a < b then
+    print("a es menor que b")
+elseif a > b then
+    print("a es mayor que b")
+else
+    print("a es igual a b")
+end
+```
+
+En este ejemplo, el programa compara los valores de **`a`** y **`b`** usando el operador **`<`** y toma la acción correspondiente según la condición que se cumpla.
+
+---
+
+### 10. **Operadores de Relación con Tablas**
+
+En Lua, las tablas son tipos de datos complejos que pueden contener múltiples valores. Las comparaciones entre tablas no verifican si los valores dentro de las tablas son iguales, sino si las tablas son **exactamente la misma tabla en memoria** (referencia).
+
+#### Ejemplo:
+
+```lua
+tabla1 = {1, 2, 3}
+tabla2 = {1, 2, 3}
+tabla3 = tabla1
+
+print(tabla1 == tabla2)  -- false, porque son tablas diferentes, aunque contengan los mismos valores
+print(tabla1 == tabla3)  -- true, porque tabla3 es la misma tabla en memoria que tabla1
+```
+
+---
+
+### 11. **Resumen de Operadores de Relación en Lua**
+
+| Operador | Descripción                                        | Ejemplo |
+|----------|----------------------------------------------------|---------|
+| `==`     | Igual a                                            | `5 == 5` (true) |
+| `~=`     | Distinto de                                        | `5 ~= 10` (true) |
+| `<`      | Menor que                                          | `3 < 5` (true) |
+| `>`      | Mayor que                                          | `10 > 7` (true) |
+| `<=`     | Menor o igual que                                  | `8 <= 10` (true) |
+| `>=`     | Mayor o igual que                                  | `15 >= 10` (true) |
+
+---
+
+### 12. **Conclusión**
+
+Los **operadores de relación** en Lua son herramientas esenciales para comparar valores y tomar decisiones en función de esas comparaciones. Ya sea que estés trabajando con números, cadenas de texto o tablas, los operadores de relación te permitirán crear programas más interactivos y dinámicos. Es importante comprender cómo funcionan estos operadores en diferentes contextos para escribir código eficiente y preciso.

@@ -1,0 +1,146 @@
+---
+title: Concatenación
+description: A reference page in my new Starlight docs site.
+---
+
+La **concatenación** es el proceso de unir dos o más cadenas de texto (strings) para formar una cadena única. En Lua, la concatenación es una operación comúnmente utilizada cuando se necesita combinar datos o crear cadenas de texto dinámicas. En este artículo, exploraremos cómo funciona la concatenación en Lua, los operadores disponibles y ejemplos prácticos de su uso.
+
+### 1. **Operador de Concatenación: `..`**
+
+En Lua, la concatenación de cadenas se realiza mediante el operador **`..`** (dos puntos). Este operador permite unir dos cadenas de texto y devolver una nueva cadena que las contiene de forma continua.
+
+#### Ejemplo:
+
+```lua
+cadena1 = "Hola, "
+cadena2 = "Mundo!"
+resultado = cadena1 .. cadena2  -- Resultado: "Hola, Mundo!"
+```
+
+En este ejemplo, las cadenas `cadena1` y `cadena2` se concatenan utilizando el operador `..` para formar la cadena `"Hola, Mundo!"`.
+
+---
+
+### 2. **Concatenación de Cadenas y Variables**
+
+Lua permite combinar cadenas literales con variables utilizando el operador de concatenación. Esto es útil cuando se necesita crear una cadena dinámica que incluya valores almacenados en variables.
+
+#### Ejemplo:
+
+```lua
+nombre = "Juan"
+saludo = "Hola, " .. nombre .. "!"
+print(saludo)  -- Resultado: "Hola, Juan!"
+```
+
+Aquí, la cadena `"Hola, "` se concatena con el valor de la variable `nombre` y luego se añade el signo de exclamación al final, formando la cadena `"Hola, Juan!"`.
+
+---
+
+### 3. **Concatenación con Otros Tipos de Datos**
+
+En Lua, el operador de concatenación **`..`** solo se puede utilizar con cadenas. Si intentas concatenar tipos de datos diferentes, Lua los convertirá automáticamente en cadenas antes de realizar la operación. Esto incluye números, booleanos, tablas, entre otros.
+
+#### Ejemplo:
+
+```lua
+edad = 25
+mensaje = "Mi edad es " .. edad
+print(mensaje)  -- Resultado: "Mi edad es 25"
+```
+
+En este caso, la variable `edad` (que es un número) se convierte en cadena automáticamente para poder concatenarse con el texto `"Mi edad es "`.
+
+---
+
+### 4. **Concatenación en Bucles**
+
+La concatenación es muy útil dentro de estructuras repetitivas, como los bucles, cuando se necesita generar una cadena de texto a partir de varias iteraciones.
+
+#### Ejemplo:
+
+```lua
+resultado = ""
+for i = 1, 5 do
+    resultado = resultado .. i .. " "
+end
+print(resultado)  -- Resultado: "1 2 3 4 5 "
+```
+
+En este ejemplo, un bucle `for` recorre los números del 1 al 5 y concatena cada número con un espacio, formando la cadena `"1 2 3 4 5 "`.
+
+---
+
+### 5. **Concatenación y Desempeño**
+
+Cuando trabajas con grandes cantidades de concatenaciones en Lua, es importante tener en cuenta el **desempeño**. Aunque el operador `..` es muy útil, las concatenaciones repetidas pueden ser ineficientes en ciertos casos, especialmente en bucles de gran tamaño. Esto se debe a que cada vez que se realiza una concatenación, Lua crea una nueva cadena, lo que puede consumir memoria y tiempo de procesamiento.
+
+#### Solución: Usar tablas para concatenar grandes cantidades de texto
+
+Una forma de optimizar la concatenación en Lua es usar **tablas** para almacenar los fragmentos de texto y luego concatenarlos al final utilizando la función `table.concat`.
+
+#### Ejemplo de uso de `table.concat`:
+
+```lua
+fragmentos = {}
+for i = 1, 5 do
+    table.insert(fragmentos, tostring(i))  -- Insertar cada número como cadena en la tabla
+end
+resultado = table.concat(fragmentos, " ")  -- Concatenar todos los fragmentos con espacio
+print(resultado)  -- Resultado: "1 2 3 4 5"
+```
+
+En este ejemplo, se usa `table.insert` para agregar cada número convertido a cadena dentro de una tabla, y luego `table.concat` se utiliza para unirlos con un espacio entre cada uno, evitando la sobrecarga de concatenaciones repetidas.
+
+---
+
+### 6. **Concatenación y Formateo de Cadenas**
+
+Aunque Lua no tiene un operador específico para formateo de cadenas como en otros lenguajes (por ejemplo, Python o C), se puede lograr un resultado similar utilizando concatenación y la función `string.format`.
+
+#### Ejemplo con `string.format`:
+
+```lua
+nombre = "Juan"
+edad = 25
+mensaje = string.format("Hola, mi nombre es %s y tengo %d años.", nombre, edad)
+print(mensaje)  -- Resultado: "Hola, mi nombre es Juan y tengo 25 años."
+```
+
+La función `string.format` permite insertar variables en una cadena de texto siguiendo un formato específico, lo que puede ser más conveniente que realizar concatenaciones manuales.
+
+---
+
+### 7. **Concatenación con Nuevas Líneas**
+
+Para agregar saltos de línea dentro de una cadena, puedes usar el carácter especial `\n`, que representa una nueva línea. Esto es útil cuando necesitas generar texto que ocupe varias líneas.
+
+#### Ejemplo:
+
+```lua
+mensaje = "Primera línea\nSegunda línea\nTercera línea"
+print(mensaje)
+-- Resultado:
+-- Primera línea
+-- Segunda línea
+-- Tercera línea
+```
+
+El carácter `\n` permite separar las diferentes partes de la cadena en líneas distintas, lo cual es útil para generar salidas de texto formateadas.
+
+---
+
+### Resumen
+
+| Operador    | Descripción                                 | Ejemplo                                    |
+|-------------|---------------------------------------------|--------------------------------------------|
+| `..`        | Concatenación de dos cadenas                | `"Hola" .. " Mundo!"`                      |
+| `table.concat` | Método eficiente para concatenar grandes cantidades de texto | `table.concat({"Hola", "Mundo"}, " ")` |
+| `string.format` | Formateo de cadenas con variables insertadas | `string.format("Hola, %s", "Juan")`       |
+| `\n`         | Agregar un salto de línea en una cadena     | `"Línea 1\nLínea 2"`                      |
+
+---
+
+### Conclusión
+
+La **concatenación** es una operación fundamental en Lua para combinar cadenas de texto. El operador `..` es la forma más común de concatenar, pero existen otros métodos como `table.concat` que son más eficientes cuando se trabaja con grandes volúmenes de texto. Además, Lua ofrece la posibilidad de formatear cadenas de manera flexible utilizando `string.format` y agregar saltos de línea con el carácter `\n`. Conocer estas herramientas te permitirá manipular y generar cadenas de texto de manera efectiva en tus programas Lua.

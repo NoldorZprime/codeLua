@@ -1,0 +1,206 @@
+---
+title: Repeat
+description: A reference page in my new Starlight docs site.
+---
+
+### El Bucle `repeat` en Lua
+
+El bucle **`repeat`** en Lua es una estructura de control que permite ejecutar un bloque de código repetidamente hasta que se cumpla una condición específica. A diferencia del bucle **`while`**, el bucle **`repeat`** garantiza que el bloque de código se ejecute al menos una vez, incluso si la condición es falsa desde el principio. Este comportamiento hace que el **`repeat`** sea similar al bucle **`do-while`** en otros lenguajes de programación.
+
+En este artículo, exploraremos cómo funciona el bucle **`repeat`** en Lua, cómo se declara, cómo controlarlo adecuadamente y algunos ejemplos prácticos.
+
+---
+
+### 1. **¿Qué es el Bucle `repeat`?**
+
+El bucle **`repeat`** en Lua ejecuta un bloque de código repetidamente hasta que una condición se evalúa como **verdadera**. La principal diferencia con el bucle **`while`** es que la condición se evalúa **después** de ejecutar el bloque de código, lo que significa que el bloque de código se ejecutará al menos una vez.
+
+La sintaxis básica de un bucle **`repeat`** es:
+
+```lua
+repeat
+    -- Bloque de código que se ejecuta
+until condición
+```
+
+- **`repeat`**: Inicia el bucle y asegura que el bloque de código se ejecute al menos una vez.
+- **`until`**: Especifica la condición que se evalúa al final de cada iteración. Si la condición es **falsa**, el bucle continuará ejecutándose; si es **verdadera**, el bucle termina.
+  
+---
+
+### 2. **Funcionamiento del Bucle `repeat`**
+
+El bucle **`repeat`** sigue la siguiente secuencia de ejecución:
+
+1. Se ejecuta el bloque de código dentro del bucle **al menos una vez**.
+2. Después de la primera ejecución, se evalúa la **condición**.
+3. Si la condición es **falsa**, el bloque de código se ejecuta nuevamente.
+4. Si la condición es **verdadera**, el bucle termina y el flujo del programa continúa después del bloque **`repeat`**.
+
+Dado que la condición se evalúa al final de cada iteración, **el código dentro del bucle siempre se ejecuta al menos una vez**, independientemente de si la condición es verdadera desde el inicio.
+
+---
+
+### 3. **Sintaxis Básica de `repeat`**
+
+Un ejemplo básico de un bucle **`repeat`** es contar de 1 a 5 e imprimir cada número en la consola.
+
+#### Ejemplo:
+
+```lua
+contador = 1
+
+repeat
+    print(contador)
+    contador = contador + 1
+until contador > 5
+```
+
+En este caso:
+- El bloque de código dentro del **`repeat`** se ejecuta inicialmente, imprimiendo **1**.
+- Después de imprimir, la condición **`contador > 5`** se evalúa. Como el contador es 1, la condición es **falsa**, por lo que el bloque de código se ejecuta nuevamente.
+- El proceso se repite hasta que el contador llega a **6**, momento en el cual la condición es **verdadera** y el bucle termina.
+
+La salida será:
+
+```
+1
+2
+3
+4
+5
+```
+
+---
+
+### 4. **Diferencias con el Bucle `while`**
+
+La principal diferencia entre el bucle **`while`** y el bucle **`repeat`** es el momento en que se evalúa la condición.
+
+- En el **`while`**, la condición se evalúa antes de ejecutar el bloque de código. Si la condición es falsa desde el inicio, el bloque de código **no se ejecutará ni una sola vez**.
+  
+  ```lua
+  contador = 6
+  while contador <= 5 do
+      print(contador)
+      contador = contador + 1
+  end
+  ```
+
+  En este ejemplo, el código **no se ejecuta** porque la condición es **falsa** desde el principio.
+
+- En el **`repeat`**, la condición se evalúa después de ejecutar el bloque de código, lo que significa que **el código se ejecuta al menos una vez**.
+
+  ```lua
+  contador = 6
+  repeat
+      print(contador)
+      contador = contador + 1
+  until contador > 5
+  ```
+
+  En este caso, el código se ejecuta una vez antes de que la condición se evalúe.
+
+---
+
+### 5. **Usando `break` y `continue` con el Bucle `repeat`**
+
+Aunque Lua no tiene un operador **`continue`** explícito como otros lenguajes, es posible simular un comportamiento similar utilizando condiciones y saltos con **`break`**.
+
+- **`break`**: Sale del bucle inmediatamente, independientemente de si la condición es verdadera o falsa.
+
+#### Ejemplo con `break`:
+
+```lua
+contador = 1
+
+repeat
+    if contador == 3 then
+        break  -- Sale del bucle cuando el contador es 3
+    end
+    print(contador)
+    contador = contador + 1
+until contador > 5
+```
+
+La salida será:
+
+```
+1
+2
+```
+
+Cuando el contador llega a **3**, el bucle se interrumpe debido al **`break`**.
+
+---
+
+### 6. **Evitar Bucle Infinito con `repeat`**
+
+El bucle **`repeat`** se ejecuta indefinidamente si la condición nunca se vuelve **verdadera**. Para evitar bucles infinitos, es esencial asegurarse de que el bloque de código dentro del bucle cambie el estado de las variables de control de manera que la condición pueda volverse **verdadera** en algún momento.
+
+#### Ejemplo de bucle infinito:
+
+```lua
+contador = 1
+
+repeat
+    print(contador)
+    -- Falta el incremento del contador
+until contador > 5
+```
+
+En este caso, el bucle nunca terminará porque el **`contador`** nunca se incrementa, por lo que la condición **`contador > 5`** siempre será falsa.
+
+Para evitar esto, es importante modificar las variables de control dentro del bucle:
+
+```lua
+contador = 1
+
+repeat
+    print(contador)
+    contador = contador + 1  -- Asegura que el contador se incremente
+until contador > 5
+```
+
+---
+
+### 7. **Usos Comunes del Bucle `repeat`**
+
+El bucle **`repeat`** es útil cuando deseas asegurarte de que un bloque de código se ejecute al menos una vez, sin importar la condición inicial. Algunos casos comunes de uso son:
+
+- **Esperar que el usuario ingrese datos válidos**.
+- **Reintentar operaciones que pueden fallar**, como solicitudes de red.
+- **Procesar elementos** hasta que se alcance una condición de salida.
+
+#### Ejemplo de uso con entrada de usuario:
+
+```lua
+local respuesta
+
+repeat
+    print("¿Te gustaría continuar? (sí/no)")
+    respuesta = io.read()  -- Lee la entrada del usuario
+until respuesta == "no"
+```
+
+En este ejemplo, el programa continuará pidiendo al usuario que ingrese una respuesta hasta que el usuario responda **"no"**.
+
+---
+
+### 8. **Resumen de la Sintaxis del Bucle `repeat`**
+
+| Elemento    | Descripción                                                           |
+|-------------|-----------------------------------------------------------------------|
+| `repeat`    | Inicia el bloque de código que se repetirá hasta que se cumpla la condición. |
+| `until`     | Evalúa la condición después de cada iteración; si es **verdadera**, termina el bucle. |
+| `break`     | Termina inmediatamente el bucle, sin evaluar la condición.             |
+
+---
+
+### 9. **Conclusión**
+
+El bucle **`repeat`** en Lua es una estructura útil cuando deseas ejecutar un bloque de código al menos una vez, independientemente de la condición. Es especialmente útil para tareas que requieren que el bloque de código se ejecute primero, como solicitar entradas del usuario o intentar una operación que puede fallar.
+
+Al igual que con otros bucles, es importante tener cuidado con las condiciones que pueden generar bucles infinitos y asegurarse de que las variables de control cambien correctamente para que el bucle termine cuando corresponda.
+
+El uso adecuado del bucle **`repeat`** puede simplificar muchos problemas de programación que requieren ciclos de ejecución con al menos una iteración inicial.
