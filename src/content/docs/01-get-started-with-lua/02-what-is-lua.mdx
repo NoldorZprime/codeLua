@@ -6,7 +6,7 @@ import { Steps } from '@astrojs/starlight/components';
 
 Lua es un lenguaje de programación dinámico y ligero diseñado para ser integrado dentro de otras aplicaciones. Su principal propósito es ofrecer una manera flexible y eficiente de ampliar las funcionalidades de programas principales, permitiendo a los desarrolladores personalizar el comportamiento y agregar nuevas capacidades de manera sencilla.
 
-A menudo descrito como un "lenguaje embebido", Lua se utiliza en una amplia variedad de áreas, desde el desarrollo de videojuegos hasta sistemas embebidos, aplicaciones científicas y herramientas empresariales. Su versatilidad radica en su capacidad para actuar como un "pegamento" entre componentes de software, lo que facilita la integración y comunicación entre diferentes sistemas.
+A menudo descrito como un "lenguaje embebido", Lua se utiliza en una amplia variedad de áreas, desde el desarrollo de videojuegos hasta sistemas embebidos y herramientas empresariales. Su versatilidad radica en su capacidad para actuar como un "pegamento" entre componentes de software, lo que facilita la integración y comunicación entre diferentes sistemas.
 
 ## Principales Usos de Lua
 
@@ -38,6 +38,57 @@ A menudo descrito como un "lenguaje embebido", Lua se utiliza en una amplia vari
 La implementación de Lua dentro de un sistema es sencilla gracias a su diseño compacto y a su interfaz con lenguajes como C y C++. Este enfoque permite que Lua opere eficientemente en sistemas con restricciones de memoria y procesamiento. Además, su arquitectura modular facilita la incorporación de bibliotecas específicas según las necesidades del proyecto.
 
 Los scripts en Lua se escriben con una sintaxis clara y amigable, lo que reduce la barrera de entrada para nuevos usuarios. Este aspecto, combinado con su capacidad de integrarse en sistemas complejos, lo convierte en una herramienta poderosa tanto para principiantes como para programadores avanzados.
+
+
+## Características de Lua
+
+Lua es un lenguaje de programación ligero y de propósito general, diseñado para ser embebido en aplicaciones. Es ampliamente utilizado en el desarrollo de videojuegos, sistemas embebidos, aplicaciones móviles, y software de servidor. Aquí tienes un resumen de sus características más destacadas:
+
+<Steps>
+
+    1. Simplicidad y Ligereza
+        - Lua es conocido por su sintaxis simple y fácil de aprender. Está diseñado para ser compacto y eficiente, lo que lo hace ideal para aplicaciones donde el tamaño y el rendimiento son importantes.
+        - El núcleo del lenguaje es pequeño, pero se puede extender mediante bibliotecas adicionales para adaptarse a diferentes necesidades.
+
+    2. Interpretado y Dinámico
+        - Lua es un lenguaje interpretado, lo que significa que el código se ejecuta directamente sin necesidad de un proceso de compilación intermedio.
+        - Es un lenguaje dinámico, lo que implica que las variables no tienen tipos fijos, y se pueden asignar diferentes tipos de valores a lo largo de la ejecución.
+
+    3. Tipado Débil y Flexible
+        - Lua tiene un **tipado débil**, lo que significa que el lenguaje permite operaciones entre tipos de datos diferentes sin necesidad de conversión explícita, como en otros lenguajes fuertemente tipados.
+        - Las variables en Lua son etiquetas que referencian valores y no están asociadas a un tipo fijo.
+
+    4. Paradigma Imperativo y Funcional
+        - Lua es principalmente un lenguaje **imperativo**, lo que significa que las instrucciones se ejecutan en un orden secuencial.
+        - También admite **funciones de primer orden** y el **paradigma funcional**, lo que permite el uso de funciones como valores, lo que facilita el manejo de operaciones complejas mediante funciones anónimas y recursión.
+
+    5. Tablas (Tables)
+        - Una de las estructuras más poderosas y versátiles de Lua son las **tablas**. Son estructuras de datos que pueden funcionar como arreglos, diccionarios, objetos y más, todo en una única estructura.
+        - Las tablas pueden ser usadas para crear estructuras complejas como listas, matrices, registros y objetos, proporcionando una gran flexibilidad.
+
+    6. Manejo de Memoria Automático
+        - Lua implementa un sistema de **recolección de basura**, lo que significa que no es necesario que el programador maneje explícitamente la memoria. Lua se encarga de liberar memoria cuando los objetos ya no son utilizados.
+
+    7. Extensibilidad
+        - Lua está diseñado para ser **embebido** en otras aplicaciones. Su API C permite que otros programas o lenguajes interactúen con Lua, lo que lo convierte en una excelente opción para extender o personalizar aplicaciones existentes.
+        - Los programas escritos en Lua pueden llamar funciones en C, y las funciones de C pueden invocar código Lua, lo que facilita la integración.
+
+    8. Portabilidad
+        - Lua es altamente **portátil** y puede ser ejecutado en diversas plataformas, desde sistemas embebidos y microcontroladores hasta servidores y plataformas de escritorio.
+        - Además, es compatible con múltiples sistemas operativos, incluidos Linux, Windows, macOS y dispositivos móviles.
+
+    9. Modelo de Concurrencia
+        - Lua no tiene soporte nativo para concurrencia, pero proporciona herramientas como **cooperativas de hilos** (coroutines), que permiten ejecutar funciones de manera asíncrona sin el uso de hilos de sistema.
+        - Las coroutines facilitan la programación de tareas concurrentes, pero sin la complejidad de hilos reales, lo que las hace útiles en entornos con requisitos de rendimiento estrictos.
+
+    10. Portabilidad y Desempeño
+        - Lua está diseñado para ser muy rápido y ligero, con un enfoque en el rendimiento sin sacrificar la flexibilidad.
+        - A pesar de ser un lenguaje interpretado, Lua ofrece un buen desempeño gracias a su implementación eficiente, lo que lo convierte en una opción popular para motores de videojuegos y otras aplicaciones donde la velocidad es crucial.
+
+    11. Soporte para Orientación a Objetos
+        - Aunque Lua no tiene clases y objetos de manera nativa, puede simular **programación orientada a objetos** mediante el uso de metatables y tablas, creando patrones como herencia y encapsulamiento.
+
+</Steps>
 
 ## Ventajas de Usar Lua
 

@@ -1,0 +1,114 @@
+---
+title: Instalar Lua
+description: Lua es un lenguaje de programación dinámico y ligero diseñado para ser integrado dentro de otras aplicaciones.
+---
+import { Steps } from '@astrojs/starlight/components';
+
+Lua es un lenguaje de programación ligero y embebible, conocido por su versatilidad y simplicidad. En esta guía, aprenderás a instalar Lua en un sistema Windows utilizando Scoop, un gestor de paquetes que facilita la instalación y gestión de herramientas de desarrollo.
+
+## ¿Qué es Scoop? 
+
+Scoop es un gestor de paquetes ligero y sencillo para Windows que permite instalar herramientas de desarrollo desde la línea de comandos. Sus ventajas incluyen:
+
+- Resolución automática de dependencias.
+- Evita configuraciones complicadas.
+- Ideal para programadores que buscan rapidez y eficiencia.
+
+### ¿Por qué usar Scoop para instalar Lua? 🤷
+
+Con Scoop, instalar Lua es sencillo y seguro:
+
+- Descarga la versión correcta.
+- Configura todo automáticamente.
+- Mantiene tus herramientas organizadas y actualizadas.
+
+## Requisitos Previos 
+
+Antes de comenzar, verifica:
+
+1. **Windows 10 o superior** 🪟.
+2. **PowerShell 5.1 o posterior**.
+3. Scoop instalado (sigue el Paso 1 si no lo tienes).
+
+## Paso 1: Instalación de Scoop
+
+<Steps>
+
+1. Abre **PowerShell** como administrador.
+
+2. Permite la ejecución de scripts ejecutando:
+
+   ```powershell
+   Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+   ```
+
+3. Instala Scoop con:
+
+   ```powershell
+   Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+   ```
+
+4. Verifica la instalación:
+
+   ```powershell
+   scoop --version
+   ```
+</Steps>
+
+## Paso 2: Instalación de Lua
+
+<Steps>
+1. Asegúrte de que Scoop esté actualizado:
+
+   ```powershell
+   scoop update
+   ```
+
+2. Busca Lua en los paquetes disponibles:
+
+   ```powershell
+   scoop search lua
+   ```
+
+3. Instala Lua:
+
+   ```powershell
+   scoop install lua
+   ```
+
+4. Comprueba la instalación verificando la versión de Lua:
+
+   ```powershell
+   lua -v
+   ```
+
+   Ejemplo de salida:
+
+   ```
+   Lua 5.4.x  Copyright (C) 1994-2024 Lua.org, PUC-Rio
+   ```
+</Steps>
+
+## Paso 3: Crear tu Primer Script en Lua 
+
+<Steps>
+1. Abre un editor de texto como **Visual Studio Code** y crea un archivo con extensión `.lua`, por ejemplo, `hola_mundo.lua`.
+
+2. Escribe el siguiente código:
+
+   ```lua
+   print("Hola, mundo!")
+   ```
+
+3. Guarda el archivo y ejecútalo desde la línea de comandos:
+
+   ```powershell
+   lua hola_mundo.lua
+   ```
+
+   Resultado esperado:
+
+   ```
+   Hola, mundo!
+   ```
+</Steps>
